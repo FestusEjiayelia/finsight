@@ -30,1387 +30,1193 @@
   --radius: 16px;
   --radius-sm: 10px;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ── HEADER ── */
-.header {
-  background: var(--green);
-  padding: 0 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.6; }
+.header { background: var(--green); padding: 0 28px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
 .logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: white; letter-spacing: -0.5px; }
 .logo span { color: #7effc5; }
 .header-right { display: flex; align-items: center; gap: 12px; }
-.user-pill {
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.9);
-  font-weight: 500;
-}
-.period-pill {
-  background: #7effc5;
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--green);
-}
-
-/* ── HERO BANNER ── */
-.hero {
-  background: linear-gradient(135deg, #0a7c4e 0%, #0d5c3a 100%);
-  padding: 32px 28px 28px;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  right: -60px; top: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: rgba(126,255,197,0.08);
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  right: 60px; bottom: -80px;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: rgba(126,255,197,0.05);
-}
+.user-pill, .period-pill { border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; }
+.user-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
+.period-pill { background: #7effc5; color: var(--green); font-size: 11px; font-weight: 700; }
+.hero { background: linear-gradient(135deg, #0a7c4e 0%, #0d5c3a 100%); padding: 32px 28px 28px; color: white; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; right:-60px; top:-60px; width:280px; height:280px; border-radius:50%; background: rgba(126,255,197,0.08); }
+.hero::after { content:''; position:absolute; right:60px; bottom:-80px; width:180px; height:180px; border-radius:50%; background: rgba(126,255,197,0.05); }
 .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #7effc5; text-transform: uppercase; margin-bottom: 8px; }
 .hero-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
-.hero-sub { font-size: 13px; color: rgba(255,255,255,0.7); max-width: 420px; }
-.hero-score {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 8px 16px;
-  margin-top: 16px;
-  font-size: 13px;
-}
-.score-badge {
-  background: #7effc5;
-  color: var(--green);
-  font-weight: 800;
-  font-size: 15px;
-  width: 36px; height: 36px;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* ── NAVIGATION TABS ── */
+.hero-sub { font-size: 13px; color: rgba(255,255,255,0.75); max-width: 560px; }
+.hero-score { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 8px 16px; margin-top: 16px; font-size: 13px; }
+.score-badge { background: #7effc5; color: var(--green); font-weight: 800; font-size: 15px; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
 .nav-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 28px; position: sticky; top: 60px; z-index: 90; }
-.nav { display: flex; gap: 0; overflow-x: auto; }
-.nav-tab {
-  padding: 14px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  border-bottom: 2.5px solid transparent;
-  white-space: nowrap;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav-tab .nav-icon { font-size: 14px; }
+.nav { display: flex; overflow-x: auto; }
+.nav-tab { padding: 14px 20px; font-size: 13px; font-weight: 600; color: var(--muted); border: none; background: transparent; cursor: pointer; border-bottom: 2.5px solid transparent; white-space: nowrap; display:flex; align-items:center; gap:6px; }
 .nav-tab.active { color: var(--green); border-bottom-color: var(--green); }
-.nav-tab:hover:not(.active) { color: var(--ink2); }
-
-/* ── MAIN LAYOUT ── */
 .main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
-.panel { display: none; }
-.panel.active { display: block; animation: fadeUp 0.2s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ── SECTION LABEL ── */
-.section-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-
-/* ── KPI GRID ── */
-.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-.kpi {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.15s;
-}
-.kpi:hover { transform: translateY(-2px); }
-.kpi-icon { font-size: 18px; margin-bottom: 10px; }
-.kpi-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.kpi-value { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.5px; }
-.kpi-change { font-size: 11px; color: var(--muted); margin-top: 4px; }
-.kpi-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+.panel { display:none; }
+.panel.active { display:block; animation: fadeUp .2s ease; }
+@keyframes fadeUp { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform: translateY(0);} }
+.kpi-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom:24px; }
+.kpi { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); padding:18px 20px; position:relative; overflow:hidden; }
+.kpi-icon { font-size:18px; margin-bottom:10px; }
+.kpi-label { font-size:11px; color: var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+.kpi-value { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; letter-spacing:-.5px; }
+.kpi-change { font-size:11px; color: var(--muted); margin-top:4px; }
+.kpi-bar { position:absolute; bottom:0; left:0; right:0; height:3px; }
 .kpi.income .kpi-bar { background: var(--green); }
 .kpi.spend .kpi-bar { background: var(--red); }
 .kpi.saved .kpi-bar { background: var(--blue); }
 .kpi.interest .kpi-bar { background: var(--gold); }
-.kpi.income .kpi-value { color: var(--green); }
-.kpi.saved .kpi-value { color: var(--blue); }
-
-/* ── CARDS ── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-  margin-bottom: 16px;
-}
-.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-.card-title { font-size: 13px; font-weight: 700; color: var(--ink2); }
-.card-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-light); color: var(--green); }
-
-/* ── GRID LAYOUTS ── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
-
-/* ── CHART ── */
-.chart-wrap { position: relative; width: 100%; }
-
-/* ── HEALTH SCORE ── */
-.health-ring-wrap { display: flex; align-items: center; gap: 24px; }
-.health-ring { position: relative; width: 110px; height: 110px; flex-shrink: 0; }
-.health-ring canvas { position: absolute; top: 0; left: 0; }
-.ring-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-.ring-label .score { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); }
-.ring-label .slabel { font-size: 10px; color: var(--muted); font-weight: 600; }
-.health-items { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-.health-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-.health-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.health-item .hi-label { color: var(--muted); flex: 1; }
-.health-item .hi-val { font-weight: 600; }
-
-/* ── INSIGHTS ── */
-.insight-card {
-  display: flex;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  margin-bottom: 10px;
-  border: 1px solid transparent;
-  align-items: flex-start;
-}
+.card { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); padding:22px; margin-bottom:16px; }
+.card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; gap:12px; }
+.card-title { font-size:13px; font-weight:700; color: var(--ink2); }
+.card-badge { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; background: var(--green-light); color: var(--green); }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid-3 { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
+.chart-wrap { position:relative; width:100%; }
+.health-ring-wrap { display:flex; align-items:center; gap:24px; }
+.health-ring { position:relative; width:110px; height:110px; flex-shrink:0; }
+.health-ring canvas { position:absolute; top:0; left:0; }
+.ring-label { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+.ring-label .score { font-family:'Syne',sans-serif; font-size:24px; font-weight:800; color: var(--green); }
+.ring-label .slabel { font-size:10px; color: var(--muted); font-weight:600; }
+.health-items { flex:1; display:flex; flex-direction:column; gap:8px; }
+.health-item { display:flex; align-items:center; gap:8px; font-size:12px; }
+.health-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.health-item .hi-label { color: var(--muted); flex:1; }
+.health-item .hi-val { font-weight:600; }
+.insight-card { display:flex; gap:14px; padding:14px 16px; border-radius: var(--radius-sm); margin-bottom:10px; border:1px solid transparent; align-items:flex-start; }
 .insight-card.positive { background: var(--green-light); border-color: var(--green-border); }
 .insight-card.warning { background: var(--gold-light); border-color: #f5d99a; }
 .insight-card.alert { background: var(--red-light); border-color: #f5b5b0; }
 .insight-card.info { background: var(--blue-light); border-color: #b3ccf0; }
-.insight-emoji { font-size: 20px; flex-shrink: 0; line-height: 1; }
-.insight-body .ins-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-.insight-body .ins-title.positive { color: var(--green); }
-.insight-body .ins-title.warning { color: var(--gold); }
-.insight-body .ins-title.alert { color: var(--red); }
-.insight-body .ins-title.info { color: var(--blue); }
-.insight-body .ins-desc { font-size: 12px; color: var(--ink2); line-height: 1.5; }
-
-/* ── LITERACY TIP ── */
-.tip-box {
-  background: var(--green);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  color: white;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-.tip-icon { font-size: 22px; flex-shrink: 0; }
-.tip-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #7effc5; }
-.tip-text { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.6; }
-
-/* ── CAT BARS ── */
-.cat-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.cat-emoji { font-size: 14px; width: 22px; text-align: center; flex-shrink: 0; }
-.cat-name { width: 120px; font-size: 12px; color: var(--ink2); font-weight: 500; flex-shrink: 0; }
-.cat-bar-bg { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
-.cat-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
-.cat-amount { width: 80px; text-align: right; font-size: 12px; font-weight: 700; color: var(--ink); flex-shrink: 0; }
-
-/* ── MONTH PILLS ── */
-.month-picker { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-.mpill {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--muted);
-  transition: all 0.15s;
-}
-.mpill.active { background: var(--green); color: white; border-color: var(--green); }
-
-/* ── TRANSACTIONS ── */
-.txn-toolbar { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-.txn-toolbar input, .txn-toolbar select {
-  padding: 9px 13px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  font-size: 13px;
-  font-family: inherit;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.15s;
-}
-.txn-toolbar input:focus, .txn-toolbar select:focus { border-color: var(--green); }
-.txn-toolbar input { flex: 1; min-width: 200px; }
-.txn-summary { display: flex; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
-.txn-stat { font-size: 12px; }
-.txn-stat span { font-weight: 700; color: var(--green); }
-.txn-table-wrap { border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.insight-emoji { font-size:20px; flex-shrink:0; }
+.insight-body .ins-title { font-size:13px; font-weight:700; margin-bottom:2px; }
+.insight-body .ins-desc { font-size:12px; color: var(--ink2); }
+.tip-box { background: var(--green); border-radius: var(--radius); padding:18px 20px; color:white; display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
+.tip-title { font-size:13px; font-weight:700; margin-bottom:4px; color:#7effc5; }
+.tip-text { font-size:12px; color: rgba(255,255,255,.88); }
+.cat-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.cat-emoji { font-size:14px; width:22px; text-align:center; flex-shrink:0; }
+.cat-name { width:140px; font-size:12px; color: var(--ink2); font-weight:500; flex-shrink:0; }
+.cat-bar-bg { flex:1; height:8px; background: var(--surface2); border-radius:4px; overflow:hidden; }
+.cat-bar-fill { height:100%; border-radius:4px; }
+.cat-amount { width:80px; text-align:right; font-size:12px; font-weight:700; color: var(--ink); flex-shrink:0; }
+.txn-toolbar { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+.txn-toolbar input, .txn-toolbar select, .form-group input, .form-group select { padding: 10px 13px; border:1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); font-size:13px; font-family:inherit; color: var(--ink); outline:none; }
+.txn-toolbar input { flex:1; min-width: 200px; }
+.txn-summary { display:flex; gap:20px; margin-bottom:14px; flex-wrap:wrap; }
+.txn-stat { font-size:12px; }
+.txn-table-wrap { border:1px solid var(--border); border-radius: var(--radius-sm); overflow:hidden; }
+.table-responsive { width:100%; overflow:auto; }
+table { width:100%; border-collapse: collapse; font-size:13px; }
 thead { background: var(--surface2); }
-th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-td { padding: 12px 14px; border-top: 1px solid var(--border); vertical-align: middle; }
-tr:hover td { background: var(--surface2); }
-.badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+th { padding:10px 14px; text-align:left; font-size:11px; font-weight:700; color: var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+td { padding:12px 14px; border-top:1px solid var(--border); vertical-align:middle; }
+.badge { display:inline-block; padding:3px 9px; border-radius:20px; font-size:11px; font-weight:600; }
 .b-green { background: var(--green-light); color: var(--green); }
 .b-blue { background: var(--blue-light); color: var(--blue); }
 .b-gold { background: var(--gold-light); color: var(--gold); }
 .b-red { background: var(--red-light); color: var(--red); }
 .b-gray { background: var(--surface2); color: var(--muted); }
-.debit { color: var(--red); font-weight: 600; }
-.credit { color: var(--green); font-weight: 600; }
-.pager { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-top: 1px solid var(--border); }
-.pager-info { font-size: 12px; color: var(--muted); }
-.pager-btns { display: flex; gap: 8px; }
-.pager-btn {
-  padding: 5px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--ink);
-  font-family: inherit;
-}
-.pager-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pager-btn:not(:disabled):hover { background: var(--green); color: white; border-color: var(--green); }
-
-/* ── PREDICTOR ── */
-.predictor-grid { display: grid; grid-template-columns: 380px 1fr; gap: 16px; }
-.form-group { margin-bottom: 14px; }
-.form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--ink2); margin-bottom: 5px; }
-.form-group .hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.form-group input, .form-group select {
-  width: 100%;
-  padding: 10px 13px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  font-size: 14px;
-  font-family: inherit;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.15s;
-}
-.form-group input:focus, .form-group select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(10,124,78,0.08); }
-.predict-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--green);
-  color: white;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.15s;
-  margin-top: 4px;
-}
-.predict-btn:hover { background: #0d9660; }
-
-.result-box {
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 16px;
-  border: 1.5px solid var(--green-border);
-  background: var(--green-light);
-  display: none;
-}
-.result-box.show { display: block; animation: fadeUp 0.25s ease; }
-.result-headline { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--green); margin-bottom: 14px; }
-.result-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.rstat { background: white; border-radius: var(--radius-sm); padding: 12px 14px; border: 1px solid var(--green-border); }
-.rstat-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px; }
-.rstat-val { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--green); }
-
-/* ── LITERACY PAGE ── */
-.literacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
-.lit-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  border-top: 4px solid var(--green);
-}
+.debit { color: var(--red); font-weight:600; }
+.credit { color: var(--green); font-weight:600; }
+.pager { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-top:1px solid var(--border); }
+.pager-btn { padding:5px 14px; border:1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); font-size:12px; font-weight:600; cursor:pointer; }
+.pager-btn:disabled { opacity:.4; cursor:not-allowed; }
+.predictor-grid { display:grid; grid-template-columns:380px 1fr; gap:16px; }
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:12px; font-weight:700; color: var(--ink2); margin-bottom:5px; }
+.form-group .hint { font-size:11px; color: var(--muted); margin-top:3px; }
+.predict-btn { width:100%; padding:12px; background: var(--green); color:white; border:none; border-radius: var(--radius-sm); font-size:14px; font-weight:700; cursor:pointer; }
+.result-box { border-radius: var(--radius); padding:20px; margin-bottom:16px; border:1.5px solid var(--green-border); background: var(--green-light); display:none; }
+.result-box.show { display:block; }
+.result-headline { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color: var(--green); margin-bottom:14px; }
+.result-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.rstat { background:white; border-radius: var(--radius-sm); padding:12px 14px; border:1px solid var(--green-border); }
+.rstat-label { font-size:11px; color: var(--muted); font-weight:600; text-transform:uppercase; margin-bottom:3px; }
+.rstat-val { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color: var(--green); }
+.literacy-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:20px; }
+.lit-card { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); padding:20px; border-top:4px solid var(--green); }
 .lit-card.gold { border-top-color: var(--gold); }
 .lit-card.blue { border-top-color: var(--blue); }
 .lit-card.red { border-top-color: var(--red); }
-.lit-emoji { font-size: 24px; margin-bottom: 10px; }
-.lit-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-.lit-body { font-size: 12px; color: var(--ink2); line-height: 1.65; }
-.lit-rule { background: var(--surface2); border-radius: 8px; padding: 10px 12px; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--green); }
-.lit-card.gold .lit-rule { color: var(--gold); }
-.lit-card.blue .lit-rule { color: var(--blue); }
-
-/* ── UPLOAD ── */
-.upload-zone {
-  border: 2px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 48px 28px;
-  text-align: center;
-  background: var(--surface);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.upload-zone:hover, .upload-zone.drag { border-color: var(--green); background: var(--green-light); }
+.lit-emoji { font-size:24px; margin-bottom:10px; }
+.lit-title { font-size:14px; font-weight:700; color: var(--ink); margin-bottom:6px; }
+.lit-body { font-size:12px; color: var(--ink2); line-height:1.65; }
+.lit-rule { background: var(--surface2); border-radius:8px; padding:10px 12px; margin-top:10px; font-size:12px; font-weight:700; color: var(--green); }
+.upload-zone { border:2px dashed var(--border); border-radius: var(--radius); padding:48px 28px; text-align:center; background: var(--surface); cursor:pointer; transition: all .2s; }
+.upload-zone.drag, .upload-zone:hover { border-color: var(--green); background: var(--green-light); }
 .upload-emoji { font-size: 40px; margin-bottom: 12px; }
-.upload-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-.upload-sub { font-size: 13px; color: var(--muted); }
-.supported { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
-.bank-pill { padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--muted); background: var(--surface); }
-.upload-msg { margin-top: 16px; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; }
-.upload-msg.success { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+.upload-title { font-size:16px; font-weight:700; color: var(--ink); margin-bottom:6px; }
+.upload-sub { font-size:13px; color: var(--muted); }
+.supported { display:flex; gap:8px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+.bank-pill { padding:4px 12px; border:1px solid var(--border); border-radius:20px; font-size:11px; font-weight:600; color: var(--muted); background: var(--surface); }
+.upload-msg { margin-top:16px; padding:12px 16px; border-radius: var(--radius-sm); font-size:13px; font-weight:600; }
+.upload-msg.success { background: var(--green-light); color: var(--green); border:1px solid var(--green-border); }
 .upload-msg.error { background: var(--red-light); color: var(--red); }
-
-/* ── FOOTER ── */
-.footer { text-align: center; padding: 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
-.footer strong { color: var(--green); }
-
+.footer { text-align:center; padding:20px; font-size:11px; color: var(--muted); border-top:1px solid var(--border); margin-top:40px; }
 @media (max-width: 700px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .grid-2, .grid-3, .predictor-grid, .literacy-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 20px; }
-  .main { padding: 16px 12px 40px; }
+  .main { padding:16px 12px 40px; }
+  .header { padding:0 14px; }
+  .nav-wrap { padding:0 12px; }
 }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <header class="header">
   <div class="logo">Fin<span>Sight</span></div>
   <div class="header-right">
-    <div class="user-pill">Festus E. · OPay Wallet</div>
-    <div class="period-pill">Jan – Dec 2025</div>
+    <div class="user-pill" id="user-pill">Demo data · 49 transactions</div>
+    <div class="period-pill" id="period-pill">Jan – Dec 2025</div>
   </div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-label">Financial Inclusion Tool</div>
+  <div class="hero-label">Personal Finance Analyzer</div>
   <div class="hero-title">Know your money.<br>Control your future.</div>
-  <div class="hero-sub">Upload your bank statement — CSV, Excel, or PDF — and instantly understand where your money goes, how to save smarter, and how to reach your goals.</div>
+  <div class="hero-sub">Upload a new statement in CSV, Excel, or PDF and FinSight will rebuild the dashboard from that file instead of staying locked to the original demo data.</div>
   <div class="hero-score">
     <div class="score-badge" id="hero-score">62</div>
     <div>
       <div style="font-size:11px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Financial Health Score</div>
-      <div style="font-size:13px;color:white;font-weight:600">Fair — You can do better. See insights →</div>
+      <div id="hero-score-text" style="font-size:13px;color:white;font-weight:600">Fair — review your cash flow and savings pattern.</div>
     </div>
   </div>
 </div>
 
-<!-- NAV -->
 <div class="nav-wrap">
   <nav class="nav">
-    <button class="nav-tab active" onclick="showTab('overview',this)"><span class="nav-icon">📊</span> Overview</button>
-    <button class="nav-tab" onclick="showTab('spending',this)"><span class="nav-icon">💸</span> Spending</button>
-    <button class="nav-tab" onclick="showTab('transactions',this)"><span class="nav-icon">📋</span> Transactions</button>
-    <button class="nav-tab" onclick="showTab('predictor',this)"><span class="nav-icon">🎯</span> Savings Goal</button>
-    <button class="nav-tab" onclick="showTab('literacy',this)"><span class="nav-icon">📚</span> Financial Tips</button>
-    <button class="nav-tab" onclick="showTab('upload',this)"><span class="nav-icon">📂</span> Import Data (CSV / Excel / PDF)</button>
+    <button class="nav-tab active" data-tab="overview"><span>📊</span> Overview</button>
+    <button class="nav-tab" data-tab="spending"><span>💸</span> Spending</button>
+    <button class="nav-tab" data-tab="transactions"><span>📋</span> Transactions</button>
+    <button class="nav-tab" data-tab="predictor"><span>🎯</span> Savings Goal</button>
+    <button class="nav-tab" data-tab="literacy"><span>📚</span> Financial Tips</button>
+    <button class="nav-tab" data-tab="upload"><span>📂</span> Import Data</button>
   </nav>
 </div>
 
 <div class="main">
-
-<!-- ══════════════════════════════════════════
-     OVERVIEW
-═══════════════════════════════════════════ -->
-<div id="panel-overview" class="panel active">
-
-  <div class="kpi-grid">
-    <div class="kpi income">
-      <div class="kpi-icon">💰</div>
-      <div class="kpi-label">Total Income</div>
-      <div class="kpi-value">₦3.65M</div>
-      <div class="kpi-change">Avg ₦304k per month</div>
-      <div class="kpi-bar"></div>
-    </div>
-    <div class="kpi spend">
-      <div class="kpi-icon">🛒</div>
-      <div class="kpi-label">Total Spent</div>
-      <div class="kpi-value" style="color:var(--red)">₦3.59M</div>
-      <div class="kpi-change">Avg ₦299k per month</div>
-      <div class="kpi-bar"></div>
-    </div>
-    <div class="kpi saved">
-      <div class="kpi-icon">🏦</div>
-      <div class="kpi-label">Total Saved</div>
-      <div class="kpi-value">₦3.94M</div>
-      <div class="kpi-change">OWealth + PiggyVest deposits</div>
-      <div class="kpi-bar"></div>
-    </div>
-    <div class="kpi interest">
-      <div class="kpi-icon">📈</div>
-      <div class="kpi-label">Interest Earned</div>
-      <div class="kpi-value" style="color:var(--gold)">₦853</div>
-      <div class="kpi-change">From OWealth balance</div>
-      <div class="kpi-bar"></div>
-    </div>
-  </div>
-
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Monthly Income vs Spending</div>
-        <div class="card-badge">2025 full year</div>
+  <div id="panel-overview" class="panel active">
+    <div class="kpi-grid">
+      <div class="kpi income">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-label">Total Income</div>
+        <div class="kpi-value" id="m-income">₦3.65M</div>
+        <div class="kpi-change" id="m-income-change">Avg ₦304k per month</div>
+        <div class="kpi-bar"></div>
       </div>
-      <div class="chart-wrap" style="height:220px"><canvas id="c-overview"></canvas></div>
-      <div style="display:flex;gap:16px;margin-top:12px">
-        <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)"><span style="width:10px;height:10px;border-radius:2px;background:var(--green)"></span>Income</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)"><span style="width:10px;height:10px;border-radius:2px;background:#f5a5a0"></span>Spending</span>
+      <div class="kpi spend">
+        <div class="kpi-icon">🛒</div>
+        <div class="kpi-label">Total Spent</div>
+        <div class="kpi-value" id="m-spending" style="color:var(--red)">₦3.59M</div>
+        <div class="kpi-change" id="m-spending-change">Avg ₦299k per month</div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi saved">
+        <div class="kpi-icon">🏦</div>
+        <div class="kpi-label">Total Saved</div>
+        <div class="kpi-value" id="m-saved" style="color:var(--blue)">₦25k</div>
+        <div class="kpi-change" id="m-saved-change">Savings deposits detected</div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi interest">
+        <div class="kpi-icon">🏥</div>
+        <div class="kpi-label">Health Score</div>
+        <div class="kpi-value" id="m-interest" style="color:var(--gold)">62/100</div>
+        <div class="kpi-change">Based on your uploaded data</div>
+        <div class="kpi-bar"></div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-header"><div class="card-title">Financial Health</div></div>
-      <div class="health-ring-wrap">
-        <div class="health-ring">
-          <canvas id="c-health" width="110" height="110"></canvas>
-          <div class="ring-label">
-            <div class="score">62</div>
-            <div class="slabel">/ 100</div>
-          </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Monthly Income vs Spending</div>
+          <div class="card-badge" id="overview-badge">Statement period</div>
         </div>
-        <div class="health-items">
-          <div class="health-item"><div class="health-dot" style="background:var(--green)"></div><div class="hi-label">Savings habit</div><div class="hi-val" style="color:var(--green)">Good</div></div>
-          <div class="health-item"><div class="health-dot" style="background:var(--gold)"></div><div class="hi-label">Spending control</div><div class="hi-val" style="color:var(--gold)">Fair</div></div>
-          <div class="health-item"><div class="health-dot" style="background:var(--red)"></div><div class="hi-label">Income stability</div><div class="hi-val" style="color:var(--red)">Low</div></div>
-          <div class="health-item"><div class="health-dot" style="background:var(--blue)"></div><div class="hi-label">Emergency fund</div><div class="hi-val" style="color:var(--blue)">Building</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">AI Insights — What your data is telling you</div></div>
-    <div id="insights-container"></div>
-  </div>
-
-</div>
-
-<!-- ══════════════════════════════════════════
-     SPENDING
-═══════════════════════════════════════════ -->
-<div id="panel-spending" class="panel">
-
-  <div class="tip-box">
-    <div class="tip-icon">💡</div>
-    <div>
-      <div class="tip-title">Financial Literacy Tip</div>
-      <div class="tip-text">The <strong>50/30/20 rule</strong> says: spend 50% of income on needs, 30% on wants, and save 20%. Looking at your breakdown below, see how close you are — and where to adjust.</div>
-    </div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-header"><div class="card-title">Where your money goes</div><div class="card-badge">Debits only</div></div>
-      <div id="cat-bars-container"></div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">Spending split</div></div>
-      <div class="chart-wrap" style="height:220px"><canvas id="c-donut"></canvas></div>
-      <div id="donut-legend" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Monthly spending trend</div></div>
-    <div class="chart-wrap" style="height:220px"><canvas id="c-spending-trend"></canvas></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Savings deposits by month</div><div class="card-badge">OWealth + PiggyVest</div></div>
-    <div class="chart-wrap" style="height:180px"><canvas id="c-savings-bar"></canvas></div>
-  </div>
-
-</div>
-
-<!-- ══════════════════════════════════════════
-     TRANSACTIONS
-═══════════════════════════════════════════ -->
-<div id="panel-transactions" class="panel">
-  <div class="card">
-    <div class="txn-toolbar">
-      <input type="text" id="txn-search" placeholder="🔍  Search transactions..." oninput="renderTxns()">
-      <select id="txn-cat" onchange="renderTxns()">
-        <option value="">All categories</option>
-        <option>Transfers Out</option>
-        <option>Airtime & Data</option>
-        <option>Food & Groceries</option>
-        <option>Business Ads</option>
-        <option>Bank Charges</option>
-        <option>POS Payment</option>
-        <option>Incoming</option>
-        <option>Savings (PiggyVest)</option>
-        <option>Other</option>
-      </select>
-      <select id="txn-type" onchange="renderTxns()">
-        <option value="">All types</option>
-        <option value="debit">Debits only</option>
-        <option value="credit">Credits only</option>
-      </select>
-    </div>
-    <div class="txn-summary" id="txn-summary"></div>
-    <div class="txn-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th style="text-align:right">Money Out (₦)</th>
-            <th style="text-align:right">Money In (₦)</th>
-          </tr>
-        </thead>
-        <tbody id="txn-body"></tbody>
-      </table>
-      <div class="pager">
-        <div class="pager-info" id="pager-info"></div>
-        <div class="pager-btns">
-          <button class="pager-btn" id="btn-prev" onclick="changePage(-1)">← Prev</button>
-          <button class="pager-btn" id="btn-next" onclick="changePage(1)">Next →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     SAVINGS PREDICTOR
-═══════════════════════════════════════════ -->
-<div id="panel-predictor" class="panel">
-
-  <div class="tip-box">
-    <div class="tip-icon">🎯</div>
-    <div>
-      <div class="tip-title">How this works</div>
-      <div class="tip-text">Enter your monthly income, expenses, and a savings goal. FinSight will calculate exactly how long it takes to reach that goal — and show you the path to get there. Try changing the numbers to see the impact of small adjustments.</div>
-    </div>
-  </div>
-
-  <div class="predictor-grid">
-    <div class="card">
-      <div class="card-header"><div class="card-title">Set your goal</div></div>
-
-      <div class="form-group">
-        <label>Monthly Income (₦)</label>
-        <input type="number" id="p-income" value="304262">
-        <div class="hint">Your average monthly earnings</div>
-      </div>
-      <div class="form-group">
-        <label>Monthly Expenses (₦)</label>
-        <input type="number" id="p-expenses" value="299440">
-        <div class="hint">What you spend each month</div>
-      </div>
-      <div class="form-group">
-        <label>Current Savings (₦)</label>
-        <input type="number" id="p-current" value="0">
-        <div class="hint">What you already have saved</div>
-      </div>
-      <div class="form-group">
-        <label>Savings Goal (₦)</label>
-        <input type="number" id="p-goal" value="1000000">
-        <div class="hint">How much you want to reach</div>
-      </div>
-      <div class="form-group">
-        <label>Annual Interest Rate (%)</label>
-        <input type="number" id="p-rate" value="12" step="0.5">
-        <div class="hint">OWealth/PiggyVest typical rate</div>
-      </div>
-      <div class="form-group">
-        <label>Projection Model</label>
-        <select id="p-method">
-          <option value="linear">Conservative (fixed savings)</option>
-          <option value="compound" selected>Realistic (with interest)</option>
-          <option value="growth">Optimistic (+5% income growth)</option>
-        </select>
-      </div>
-      <button class="predict-btn" onclick="runProjection()">Calculate My Path →</button>
-    </div>
-
-    <div>
-      <div class="result-box" id="result-box">
-        <div class="result-headline" id="result-headline"></div>
-        <div class="result-stats" id="result-stats"></div>
+        <div class="chart-wrap" style="height:220px"><canvas id="c-overview"></canvas></div>
       </div>
 
       <div class="card">
-        <div class="card-header"><div class="card-title">Your savings journey</div></div>
-        <div class="chart-wrap" style="height:240px"><canvas id="c-projection"></canvas></div>
-      </div>
-
-      <div class="card" style="margin-top:0">
-        <div class="card-header"><div class="card-title">What if I save more?</div><div class="card-badge">Impact simulator</div></div>
-        <div style="margin-bottom:12px">
-          <label style="font-size:12px;font-weight:700;color:var(--ink2);display:block;margin-bottom:6px">Extra monthly savings: <span id="extra-label" style="color:var(--green)">₦5,000</span></label>
-          <input type="range" min="0" max="50000" step="1000" value="5000" id="extra-slider" oninput="updateExtra(this.value)" style="width:100%">
+        <div class="card-header"><div class="card-title">Financial Health</div></div>
+        <div class="health-ring-wrap">
+          <div class="health-ring">
+            <canvas id="c-health" width="110" height="110"></canvas>
+            <div class="ring-label">
+              <div class="score" id="health-score-label">62</div>
+              <div class="slabel">/ 100</div>
+            </div>
+          </div>
+          <div class="health-items">
+            <div class="health-item"><div class="health-dot" style="background:var(--green)"></div><div class="hi-label">Savings habit</div><div class="hi-val" id="health-savings" style="color:var(--green)">Good</div></div>
+            <div class="health-item"><div class="health-dot" style="background:var(--gold)"></div><div class="hi-label">Spending control</div><div class="hi-val" id="health-spending" style="color:var(--gold)">Fair</div></div>
+            <div class="health-item"><div class="health-dot" style="background:var(--red)"></div><div class="hi-label">Income stability</div><div class="hi-val" id="health-income" style="color:var(--red)">Low</div></div>
+            <div class="health-item"><div class="health-dot" style="background:var(--blue)"></div><div class="hi-label">Emergency fund</div><div class="hi-val" id="health-emergency" style="color:var(--blue)">Building</div></div>
+          </div>
         </div>
-        <div id="extra-result" style="font-size:13px;color:var(--ink2)"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">AI Insights — What your data is telling you</div></div>
+      <div id="insights-container"></div>
+    </div>
+  </div>
+
+  <div id="panel-spending" class="panel">
+    <div class="tip-box">
+      <div>💡</div>
+      <div>
+        <div class="tip-title">Financial Literacy Tip</div>
+        <div class="tip-text">The 50/30/20 rule is still a good benchmark: 50% needs, 30% wants, 20% savings. FinSight recalculates your real pattern each time you upload a new statement.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Where your money goes</div><div class="card-badge">Debits only</div></div>
+        <div id="cat-bars-container"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Spending split</div></div>
+        <div class="chart-wrap" style="height:220px"><canvas id="c-donut"></canvas></div>
+        <div id="donut-legend" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Monthly spending trend</div></div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-spending-trend"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Savings deposits by month</div><div class="card-badge">Detected transfer to savings tools</div></div>
+      <div class="chart-wrap" style="height:180px"><canvas id="c-savings-bar"></canvas></div>
+    </div>
+  </div>
+
+  <div id="panel-transactions" class="panel">
+    <div class="card">
+      <div class="txn-toolbar">
+        <input type="text" id="txn-search" placeholder="🔍 Search transactions...">
+        <select id="txn-cat"><option value="">All categories</option></select>
+        <select id="txn-type"><option value="">All types</option><option value="debit">Debits only</option><option value="credit">Credits only</option></select>
+      </div>
+      <div class="txn-summary" id="txn-summary"></div>
+      <div class="txn-table-wrap">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Money Out (₦)</th><th style="text-align:right">Money In (₦)</th></tr>
+            </thead>
+            <tbody id="txn-body"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <div id="pager-info"></div>
+          <div>
+            <button class="pager-btn" id="btn-prev">← Prev</button>
+            <button class="pager-btn" id="btn-next">Next →</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <div id="panel-predictor" class="panel">
+    <div class="tip-box">
+      <div>🎯</div>
+      <div>
+        <div class="tip-title">How this works</div>
+        <div class="tip-text">The goal calculator uses the current statement averages. Uploading a new statement will also update the default projection values.</div>
+      </div>
+    </div>
+
+    <div class="predictor-grid">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Set your goal</div></div>
+        <div class="form-group"><label>Monthly Income (₦)</label><input type="number" id="p-income"><div class="hint">Average monthly inflow</div></div>
+        <div class="form-group"><label>Monthly Expenses (₦)</label><input type="number" id="p-expenses"><div class="hint">Average monthly outflow excluding savings transfers</div></div>
+        <div class="form-group"><label>Current Savings (₦)</label><input type="number" id="p-current" value="0"></div>
+        <div class="form-group"><label>Savings Goal (₦)</label><input type="number" id="p-goal" value="1000000"></div>
+        <div class="form-group"><label>Annual Interest Rate (%)</label><input type="number" id="p-rate" value="12" step="0.5"></div>
+        <div class="form-group"><label>Projection Model</label><select id="p-method"><option value="linear">Conservative (fixed savings)</option><option value="compound" selected>Realistic (with interest)</option><option value="growth">Optimistic (+5% income growth)</option></select></div>
+        <button class="predict-btn" id="predict-btn">Calculate My Path →</button>
+      </div>
+      <div>
+        <div class="result-box" id="result-box">
+          <div class="result-headline" id="result-headline"></div>
+          <div class="result-stats" id="result-stats"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Your savings journey</div></div>
+          <div class="chart-wrap" style="height:240px"><canvas id="c-projection"></canvas></div>
+        </div>
+        <div class="card" style="margin-top:0">
+          <div class="card-header"><div class="card-title">What if I save more?</div><div class="card-badge">Impact simulator</div></div>
+          <div style="margin-bottom:12px">
+            <label style="font-size:12px;font-weight:700;color:var(--ink2);display:block;margin-bottom:6px">Extra monthly savings: <span id="extra-label" style="color:var(--green)">₦5,000</span></label>
+            <input type="range" min="0" max="50000" step="1000" value="5000" id="extra-slider" style="width:100%">
+          </div>
+          <div id="extra-result" style="font-size:13px;color:var(--ink2)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-literacy" class="panel">
+    <div class="tip-box">
+      <div>📚</div>
+      <div>
+        <div class="tip-title">Financial literacy changes behaviour</div>
+        <div class="tip-text">These cards now update from the latest uploaded statement instead of staying fixed to the original sample statement.</div>
+      </div>
+    </div>
+
+    <div class="literacy-grid">
+      <div class="lit-card">
+        <div class="lit-emoji">💰</div>
+        <div class="lit-title">The 50/30/20 Rule</div>
+        <div class="lit-body" id="lit-503020"></div>
+        <div class="lit-rule">Rule: Save first. Spend what's left.</div>
+      </div>
+      <div class="lit-card gold">
+        <div class="lit-emoji">📊</div>
+        <div class="lit-title">Understanding Your Cash Flow</div>
+        <div class="lit-body" id="lit-networth"></div>
+        <div class="lit-rule" style="color:var(--gold)">Rule: Income minus expenses should stay positive.</div>
+      </div>
+      <div class="lit-card blue">
+        <div class="lit-emoji">🛡️</div>
+        <div class="lit-title">Emergency Fund First</div>
+        <div class="lit-body" id="lit-emergency"></div>
+        <div class="lit-rule" style="color:var(--blue)">Target: 3–6 months of expenses in liquid savings.</div>
+      </div>
+      <div class="lit-card red">
+        <div class="lit-emoji">📱</div>
+        <div class="lit-title">Watch Repeating Expenses</div>
+        <div class="lit-body" id="lit-warning"></div>
+        <div class="lit-rule" style="color:var(--red)">Rule: Small recurring costs add up fast.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-upload" class="panel">
+    <div class="card">
+      <div class="upload-zone" id="upload-zone">
+        <div class="upload-emoji">📂</div>
+        <div class="upload-title">Drop your bank statement here</div>
+        <div class="upload-sub">Click to browse — supports CSV, Excel (.xlsx / .xls), and PDF</div>
+        <div class="supported">
+          <span class="bank-pill">CSV</span><span class="bank-pill">Excel</span><span class="bank-pill">PDF</span><span class="bank-pill">OPay</span><span class="bank-pill">Kuda</span><span class="bank-pill">GTBank</span><span class="bank-pill">Access</span>
+        </div>
+      </div>
+      <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
+      <div id="upload-msg"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Expected column structure</div></div>
+      <div class="txn-table-wrap">
+        <div class="table-responsive">
+          <table>
+            <thead><tr><th>Date</th><th>Description</th><th>Debit</th><th>Credit</th></tr></thead>
+            <tbody>
+              <tr><td>2025-01-01</td><td>Transfer from JOHN DOE | OPay</td><td></td><td>50000</td></tr>
+              <tr><td>2025-01-02</td><td>Airtime | 0812345678 | MTN</td><td>2000</td><td></td></tr>
+              <tr><td>2025-01-03</td><td>Transfer to VENDOR NAME | Access Bank</td><td>15000</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     FINANCIAL LITERACY
-═══════════════════════════════════════════ -->
-<div id="panel-literacy" class="panel">
-
-  <div class="tip-box">
-    <div class="tip-icon">📚</div>
-    <div>
-      <div class="tip-title">Financial literacy changes lives</div>
-      <div class="tip-text">Over 40 million Nigerians have mobile wallets but no tools to understand their spending. These lessons are designed for anyone who wants to build real financial knowledge — starting today.</div>
-    </div>
-  </div>
-
-  <div class="literacy-grid">
-    <div class="lit-card">
-      <div class="lit-emoji">💰</div>
-      <div class="lit-title">The 50/30/20 Rule</div>
-      <div class="lit-body">Divide every naira you earn into three buckets: 50% for needs (rent, food, transport), 30% for wants (data, entertainment), and 20% straight into savings. This single rule, followed consistently, builds wealth over time.
-      <br><br>Based on your data: you're spending about <strong>98% of income</strong> on needs + wants and saving roughly 2% from surplus. Target: get savings to 20%.</div>
-      <div class="lit-rule">Rule: Save first. Spend what's left.</div>
-    </div>
-    <div class="lit-card gold">
-      <div class="lit-emoji">📊</div>
-      <div class="lit-title">Understanding Your Net Worth</div>
-      <div class="lit-body">Net worth = everything you own minus everything you owe. Even with a small income, you can grow your net worth by reducing debt and consistently adding to savings and investments.
-      <br><br>Your OWealth deposits show you are already building the savings habit. The next step is keeping more of what you deposit — by reducing outgoing transfers.</div>
-      <div class="lit-rule" style="color:var(--gold)">Rule: Assets − Liabilities = Net Worth. Grow it every month.</div>
-    </div>
-    <div class="lit-card blue">
-      <div class="lit-emoji">🛡️</div>
-      <div class="lit-title">Emergency Fund First</div>
-      <div class="lit-body">Before investing, build a fund covering 3–6 months of living expenses. This protects you from debt when unexpected things happen — job loss, health issues, emergencies.
-      <br><br>At your avg monthly spending of ₦299k, your emergency fund target is ₦900k – ₦1.8M. With a consistent ₦20k/month set aside, you'd reach ₦900k in 45 months.</div>
-      <div class="lit-rule" style="color:var(--blue)">Target: 3–6 months of expenses in liquid savings.</div>
-    </div>
-    <div class="lit-card red">
-      <div class="lit-emoji">📱</div>
-      <div class="lit-title">Your Airtime Bill Is a Warning</div>
-      <div class="lit-body">You spent <strong>₦337,576</strong> on airtime and mobile data in 2025 — that's ₦28k per month. Small recurring costs silently drain wealth.
-      <br><br>If you redirected just ₦10,000 of that monthly into a PiggyVest savings plan at 12% annual interest, in 5 years that's over ₦820,000 — from just cutting data costs.</div>
-      <div class="lit-rule" style="color:var(--red)">Rule: Track the small stuff. It adds up to millions.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Investment options available to you right now</div></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">OWealth (OPay)</div>
-        <div style="font-size:12px;color:var(--ink2)">~15% p.a. interest on savings. Low entry point. Already using.</div>
-      </div>
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px">PiggyVest</div>
-        <div style="font-size:12px;color:var(--ink2)">10–13% p.a. Lock funds away to avoid spending temptation.</div>
-      </div>
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px">Nigerian Stock Market</div>
-        <div style="font-size:12px;color:var(--ink2)">Long-term wealth. NGX returned 37% in 2023. Start with Trove or Bamboo.</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ══════════════════════════════════════════
-     IMPORT DATA
-═══════════════════════════════════════════ -->
-<div id="panel-upload" class="panel">
-  <div class="card">
-    <div class="upload-zone" id="upload-zone"
-      onclick="document.getElementById('file-input').click()"
-      ondragover="event.preventDefault();this.classList.add('drag')"
-      ondragleave="this.classList.remove('drag')"
-      ondrop="handleDrop(event)">
-      <div class="upload-emoji">📂</div>
-      <div class="upload-title">Drop your bank statement here</div>
-      <div class="upload-sub">Click to browse — supports CSV, Excel (.xlsx), and PDF</div>
-      <div class="supported">
-        <span class="bank-pill">📊 Excel (.xlsx)</span>
-        <span class="bank-pill">📄 PDF</span>
-        <span class="bank-pill">📋 CSV</span>
-        <span class="bank-pill">OPay</span>
-        <span class="bank-pill">Kuda</span>
-        <span class="bank-pill">GTBank</span>
-        <span class="bank-pill">Access Bank</span>
-        <span class="bank-pill">Zenith</span>
-        <span class="bank-pill">First Bank</span>
-        <span class="bank-pill">UBA</span>
-      </div>
-    </div>
-    <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none" onchange="handleUpload(event)">
-    <div id="upload-msg"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Supported formats</div></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:20px;margin-bottom:6px">📊</div>
-        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">Excel (.xlsx / .xls)</div>
-        <div style="font-size:12px;color:var(--muted)">Most Nigerian banks export statements as Excel. OPay, GTBank, Zenith, First Bank, UBA all supported.</div>
-      </div>
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:20px;margin-bottom:6px">📄</div>
-        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px">PDF Statement</div>
-        <div style="font-size:12px;color:var(--muted)">Bank-generated PDF statements. FinSight extracts the transaction table automatically. Works best with text-based PDFs.</div>
-      </div>
-      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
-        <div style="font-size:20px;margin-bottom:6px">📋</div>
-        <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px">CSV</div>
-        <div style="font-size:12px;color:var(--muted)">Comma-separated values. Export from any banking app or spreadsheet with columns: Date, Description, Debit, Credit.</div>
-      </div>
-    </div>
-    <div class="card-header"><div class="card-title">Expected column structure (all formats)</div></div>
-    <div class="txn-table-wrap">
-      <table>
-        <thead><tr><th>Date</th><th>Description</th><th>Debit</th><th>Credit</th></tr></thead>
-        <tbody>
-          <tr><td>2025-01-01</td><td>Transfer from JOHN DOE | OPay</td><td></td><td>50000</td></tr>
-          <tr><td>2025-01-02</td><td>Airtime | 0812345678 | MTN</td><td>2000</td><td></td></tr>
-          <tr><td>2025-01-03</td><td>Transfer to VENDOR NAME | Access Bank</td><td>15000</td><td></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-</div><!-- /main -->
-
-<div class="footer">
-  Built for the <strong>3MTT NextGen Knowledge Showcase</strong> · Financial Inclusion Pillar · FinSight v1.0
-</div>
+<div class="footer">Built for the 3MTT NextGen Knowledge Showcase · FinSight fixed build</div>
 
 <script>
-/* ══ DATA ══ */
-const MONTHLY = [
-  {l:'Jan',income:392344,spend:378471,saved:456894},
-  {l:'Feb',income:453327,spend:451858,saved:459281},
-  {l:'Mar',income:288787,spend:286165,saved:303771},
-  {l:'Apr',income:709481,spend:706208,saved:880161},
-  {l:'May',income:599522,spend:579920,saved:593772},
-  {l:'Jun',income:124451,spend:122493,saved:145001},
-  {l:'Jul',income:48885,spend:48440,saved:46305},
-  {l:'Aug',income:115400,spend:110974,saved:120200},
-  {l:'Sep',income:90622,spend:76857,saved:100322},
-  {l:'Oct',income:154967,spend:143591,saved:153440},
-  {l:'Nov',income:336962,spend:341060,saved:339621},
-  {l:'Dec',income:336403,spend:347242,saved:337797},
-];
-const CAT_TOTALS = {
-  'Transfers Out':3200760,'Airtime & Data':337576,'Food & Groceries':36905,
-  'Other':5238,'Bank Charges':5200,'Business Ads':4500,'POS Payment':2100,'Business Research':1000
-};
-const CAT_COLORS  = ['#0a7c4e','#1a4fa0','#c9860a','#c0392b','#7a8c85','#5a3d9a','#0f7c8a','#3d6b2a'];
-const CAT_EMOJIS  = {'Transfers Out':'💸','Airtime & Data':'📡','Food & Groceries':'🍱','Other':'📦','Bank Charges':'🏛','Business Ads':'📣','POS Payment':'💳','Business Research':'🔬'};
-const TXNS = [
+const fmt = n => '₦' + Math.round(Number(n || 0)).toLocaleString();
+const fmtK = n => n >= 1e6 ? '₦' + (n / 1e6).toFixed(2) + 'M' : n >= 1e3 ? '₦' + Math.round(n / 1e3) + 'k' : fmt(n);
+const CAT_COLORS = ['#0a7c4e','#1a4fa0','#c9860a','#c0392b','#7a8c85','#5a3d9a','#0f7c8a','#3d6b2a','#8a3d1a','#3d8a5a'];
+const CAT_EMOJIS = {'Transfers Out':'💸','Airtime & Data':'📡','Food & Groceries':'🍱','Other':'📦','Bank Charges':'🏛','Business Ads':'📣','POS Payment':'💳','Business Research':'🔬','Savings (PiggyVest)':'🏦','Savings (OWealth)':'💰','Utilities':'⚡','Education':'📚','Healthcare':'🏥','Cash Withdrawal':'💵','Incoming':'📥'};
+const CAT_BADGE = {'Incoming':'b-green','Transfers Out':'b-blue','Airtime & Data':'b-gold','Food & Groceries':'b-gold','Business Ads':'b-red','Bank Charges':'b-gray','Savings (PiggyVest)':'b-green','Savings (OWealth)':'b-green','POS Payment':'b-gray','Other':'b-gray','Business Research':'b-gray','Utilities':'b-blue','Education':'b-blue','Healthcare':'b-red','Cash Withdrawal':'b-gray'};
+
+const DEMO_TXNS = [
   {date:'2025-12-30',desc:'Transfer from PRINCE UYI EFOSA | OPay',debit:0,credit:50000,cat:'Incoming'},
-  {date:'2025-12-29',desc:'Transfer to LOVETH OSUJI | OPay | 8136870496',debit:15000,credit:0,cat:'Transfers Out'},
-  {date:'2025-12-28',desc:'Mobile Data | 8147939755 | DataMtn',debit:3500,credit:0,cat:'Airtime & Data'},
+  {date:'2025-12-29',desc:'Transfer to LOVETH OSUJI | OPay',debit:15000,credit:0,cat:'Transfers Out'},
+  {date:'2025-12-28',desc:'Mobile Data | DataMtn',debit:3500,credit:0,cat:'Airtime & Data'},
   {date:'2025-12-27',desc:'OPay Card Payment | PiggyVest',debit:5000,credit:0,cat:'Savings (PiggyVest)'},
   {date:'2025-12-25',desc:'Transfer from KOLAWOLE ANDREW | Palmpay',debit:0,credit:120000,cat:'Incoming'},
-  {date:'2025-12-24',desc:'Transfer to Papa Best Frozen Foods | MONIE POINT',debit:8000,credit:0,cat:'Food & Groceries'},
+  {date:'2025-12-24',desc:'Transfer to Papa Best Frozen Foods',debit:8000,credit:0,cat:'Food & Groceries'},
   {date:'2025-12-23',desc:'Card Maintenance Fee',debit:100,credit:0,cat:'Bank Charges'},
-  {date:'2025-12-22',desc:'Transfer to Facebookads | Paga | 0806512314',debit:4500,credit:0,cat:'Business Ads'},
+  {date:'2025-12-22',desc:'Transfer to Facebookads | Paga',debit:4500,credit:0,cat:'Business Ads'},
   {date:'2025-12-21',desc:'Transfer from ABDULWAHAB BABA | Palmpay',debit:0,credit:75000,cat:'Incoming'},
-  {date:'2025-12-20',desc:'Transfer to BIOMED TOXICOLOGY | Zenith Bank',debit:1000,credit:0,cat:'Business Research'},
   {date:'2025-12-19',desc:'Electronic Money Transfer Levy',debit:50,credit:0,cat:'Bank Charges'},
-  {date:'2025-12-18',desc:'Transfer to Mama Best Frozen Food 2 | MONIE POINT',debit:6500,credit:0,cat:'Food & Groceries'},
-  {date:'2025-12-17',desc:'Airtime | 8147939755 | MTN',debit:1500,credit:0,cat:'Airtime & Data'},
-  {date:'2025-12-16',desc:'Transfer to DURO BABAGBEMI | OPay | 8060641861',debit:45000,credit:0,cat:'Transfers Out'},
+  {date:'2025-12-18',desc:'Transfer to Mama Best Frozen Food 2',debit:6500,credit:0,cat:'Food & Groceries'},
+  {date:'2025-12-17',desc:'Airtime | MTN',debit:1500,credit:0,cat:'Airtime & Data'},
+  {date:'2025-12-16',desc:'Transfer to DURO BABAGBEMI | OPay',debit:45000,credit:0,cat:'Transfers Out'},
   {date:'2025-12-15',desc:'Transfer from IYABO OMOWUMI FAJI | Palmpay',debit:0,credit:200000,cat:'Incoming'},
-  {date:'2025-12-14',desc:'Transfer to POS - HELEN EKHODIAEHI | MONIE POINT',debit:10000,credit:0,cat:'Transfers Out'},
-  {date:'2025-12-13',desc:'Mobile Data | 8147939755 | DataMtn',debit:5000,credit:0,cat:'Airtime & Data'},
-  {date:'2025-12-12',desc:'Transfer to PIGGYVEST/EJIAYELIA FESTUS | Wema Bank',debit:20000,credit:0,cat:'Savings (PiggyVest)'},
-  {date:'2025-12-10',desc:'Transfer from IFEANYICHUKWU OTUOKO | MONIE POINT',debit:0,credit:30000,cat:'Incoming'},
-  {date:'2025-12-08',desc:'Airtime | 8147939755 | MTN',debit:2000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-12-14',desc:'Transfer to POS - HELEN EKHODIAEHI',debit:10000,credit:0,cat:'Transfers Out'},
+  {date:'2025-12-13',desc:'Mobile Data | DataMtn',debit:5000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-12-12',desc:'Transfer to PIGGYVEST/EJIAYELIA FESTUS',debit:20000,credit:0,cat:'Savings (PiggyVest)'},
+  {date:'2025-12-10',desc:'Transfer from IFEANYICHUKWU OTUOKO',debit:0,credit:30000,cat:'Incoming'},
+  {date:'2025-12-08',desc:'Airtime | MTN',debit:2000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-11-30',desc:'Transfer from CLIENT PAYMENT | GTBank',debit:0,credit:150000,cat:'Incoming'},
+  {date:'2025-11-28',desc:'Transfer to RENT PAYMENT | Zenith',debit:80000,credit:0,cat:'Transfers Out'},
+  {date:'2025-11-25',desc:'Airtime | GLO',debit:3000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-11-20',desc:'Transfer to GROCERY STORE | Access',debit:12000,credit:0,cat:'Food & Groceries'},
+  {date:'2025-11-15',desc:'Transfer from SALARY | UBA',debit:0,credit:200000,cat:'Incoming'},
+  {date:'2025-11-10',desc:'NEPA/IBEDC | Electricity',debit:8000,credit:0,cat:'Utilities'},
+  {date:'2025-10-30',desc:'Transfer from FREELANCE | Palmpay',debit:0,credit:180000,cat:'Incoming'},
+  {date:'2025-10-25',desc:'Mobile Data | MTN',debit:5000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-10-20',desc:'ATM Cash Withdrawal',debit:30000,credit:0,cat:'Cash Withdrawal'},
+  {date:'2025-10-15',desc:'Transfer to SCHOOL FEES | First Bank',debit:50000,credit:0,cat:'Education'},
+  {date:'2025-09-30',desc:'Transfer from BUSINESS INCOME | OPay',debit:0,credit:120000,cat:'Incoming'},
+  {date:'2025-09-25',desc:'Airtime | Airtel',debit:2500,credit:0,cat:'Airtime & Data'},
+  {date:'2025-09-20',desc:'Hospital | PHARMACY PAYMENT',debit:15000,credit:0,cat:'Healthcare'},
+  {date:'2025-08-30',desc:'Transfer from CLIENT | Access Bank',debit:0,credit:95000,cat:'Incoming'},
+  {date:'2025-08-25',desc:'Transfer to FOOD VENDOR',debit:7000,credit:0,cat:'Food & Groceries'},
+  {date:'2025-07-30',desc:'Transfer from PART-TIME | GTBank',debit:0,credit:60000,cat:'Incoming'},
+  {date:'2025-07-20',desc:'Airtime | MTN',debit:2000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-06-30',desc:'Transfer from SALARY | UBA',debit:0,credit:180000,cat:'Incoming'},
+  {date:'2025-06-25',desc:'Transfer to LANDLORD | Zenith',debit:90000,credit:0,cat:'Transfers Out'},
+  {date:'2025-05-30',desc:'Transfer from BUSINESS | OPay',debit:0,credit:300000,cat:'Incoming'},
+  {date:'2025-05-20',desc:'Mobile Data | DataMtn',debit:5000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-04-30',desc:'Transfer from CLIENT | Palmpay',debit:0,credit:400000,cat:'Incoming'},
+  {date:'2025-04-25',desc:'Transfer to SUPPLIER | GTBank',debit:150000,credit:0,cat:'Transfers Out'},
+  {date:'2025-03-30',desc:'Transfer from SALARY | UBA',debit:0,credit:200000,cat:'Incoming'},
+  {date:'2025-03-20',desc:'Airtime | MTN',debit:3000,credit:0,cat:'Airtime & Data'},
+  {date:'2025-02-28',desc:'Transfer from FREELANCE | Access',debit:0,credit:250000,cat:'Incoming'},
+  {date:'2025-02-20',desc:'Transfer to FOOD MARKET',debit:15000,credit:0,cat:'Food & Groceries'},
+  {date:'2025-01-31',desc:'Transfer from SALARY | GTBank',debit:0,credit:300000,cat:'Incoming'},
+  {date:'2025-01-25',desc:'Transfer to RENT | Zenith',debit:80000,credit:0,cat:'Transfers Out'},
+  {date:'2025-01-20',desc:'Airtime | MTN',debit:2500,credit:0,cat:'Airtime & Data'}
 ];
 
-const fmt  = n => '₦' + Math.round(n).toLocaleString();
-const fmtK = n => n >= 1e6 ? '₦'+(n/1e6).toFixed(2)+'M' : n >= 1e3 ? '₦'+(n/1e3).toFixed(0)+'k' : '₦'+Math.round(n);
-
-/* ══ TABS ══ */
-let spendingInited = false;
-function showTab(name, el) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-  el.classList.add('active');
-  if (name === 'spending' && !spendingInited) { initSpending(); spendingInited = true; }
-  if (name === 'transactions') renderTxns();
-  if (name === 'predictor') { runProjection(); updateExtra(5000); }
-}
-
-/* ══ OVERVIEW CHARTS ══ */
-(function initOverview() {
-  const labels = MONTHLY.map(m=>m.l);
-  new Chart(document.getElementById('c-overview'), {
-    type:'bar',
-    data:{labels,datasets:[
-      {label:'Income',data:MONTHLY.map(m=>m.income),backgroundColor:'#0a7c4e',borderRadius:4,barPercentage:0.55},
-      {label:'Spending',data:MONTHLY.map(m=>m.spend),backgroundColor:'#f5a5a0',borderRadius:4,barPercentage:0.55}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#7a8c85'}},
-              y:{grid:{color:'#f0f4f2'},ticks:{callback:v=>fmtK(v),font:{size:11},color:'#7a8c85'}}}}
-  });
-
-  const score = 62;
-  new Chart(document.getElementById('c-health'), {
-    type:'doughnut',
-    data:{datasets:[{data:[score,100-score],backgroundColor:['#0a7c4e','#e0e8e4'],borderWidth:0}]},
-    options:{responsive:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false}}}
-  });
-
-  document.getElementById('insights-container').innerHTML = [
-    {t:'positive',emoji:'✅',title:'Strong savings habit',desc:'Your OWealth deposits totalled ₦3.94M in 2025 — you consistently move money into savings. This is the most important financial habit to maintain.'},
-    {t:'warning',emoji:'⚠️',title:'Airtime & Data: ₦337k spent',desc:'You spent ₦28,000 per month on airtime and data — your single biggest controllable expense. Redirecting even ₦10k/month into savings could add ₦820k over 5 years.'},
-    {t:'alert',emoji:'🔴',title:'November & December: spending exceeded income',desc:'You spent more than you earned in the last two months of the year. Watch for festive-season overspending — it can undo months of discipline.'},
-    {t:'info',emoji:'📉',title:'Mid-year income dropped sharply',desc:'Income fell from ₦709k (April) to ₦48k (July) — a 93% drop. Building an emergency fund cushion will protect you during low-income months.'},
-    {t:'positive',emoji:'💹',title:'April was your best month',desc:'April generated ₦709,481 — 19% of your entire annual income in one month. Understanding what drove that could help you replicate it.'},
-  ].map(i=>`
-    <div class="insight-card ${i.t}">
-      <div class="insight-emoji">${i.emoji}</div>
-      <div class="insight-body">
-        <div class="ins-title ${i.t}">${i.title}</div>
-        <div class="ins-desc">${i.desc}</div>
-      </div>
-    </div>`).join('');
-})();
-
-/* ══ SPENDING ══ */
-function initSpending() {
-  const cats = Object.keys(CAT_TOTALS);
-  const vals = Object.values(CAT_TOTALS);
-  const total = vals.reduce((a,b)=>a+b,0);
-  const maxV  = Math.max(...vals);
-
-  document.getElementById('cat-bars-container').innerHTML = cats.map((c,i)=>`
-    <div class="cat-row">
-      <div class="cat-emoji">${CAT_EMOJIS[c]||'📦'}</div>
-      <div class="cat-name">${c}</div>
-      <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${(vals[i]/maxV*100).toFixed(1)}%;background:${CAT_COLORS[i]}"></div></div>
-      <div class="cat-amount">${fmtK(vals[i])}</div>
-    </div>`).join('');
-
-  new Chart(document.getElementById('c-donut'),{
-    type:'doughnut',
-    data:{labels:cats,datasets:[{data:vals,backgroundColor:CAT_COLORS,borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmt(ctx.raw)} (${(ctx.raw/total*100).toFixed(1)}%)`}}}}
-  });
-
-  document.getElementById('donut-legend').innerHTML = cats.map((c,i)=>`
-    <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)">
-      <span style="width:10px;height:10px;border-radius:2px;background:${CAT_COLORS[i]};flex-shrink:0"></span>${c}
-    </span>`).join('');
-
-  new Chart(document.getElementById('c-spending-trend'),{
-    type:'line',
-    data:{labels:MONTHLY.map(m=>m.l),datasets:[{
-      label:'Spending',data:MONTHLY.map(m=>m.spend),
-      borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.07)',
-      fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#c0392b',borderWidth:2
-    }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#7a8c85'}},
-              y:{grid:{color:'#f0f4f2'},ticks:{callback:v=>fmtK(v),font:{size:11},color:'#7a8c85'}}}}
-  });
-
-  new Chart(document.getElementById('c-savings-bar'),{
-    type:'bar',
-    data:{labels:MONTHLY.map(m=>m.l),datasets:[{
-      label:'Saved',data:MONTHLY.map(m=>m.saved),
-      backgroundColor:'#1a4fa0',borderRadius:4,barPercentage:0.6
-    }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#7a8c85'}},
-              y:{grid:{color:'#f0f4f2'},ticks:{callback:v=>fmtK(v),font:{size:11},color:'#7a8c85'}}}}
-  });
-}
-
-/* ══ TRANSACTIONS ══ */
-let txnData = [...TXNS], filteredTxns = [...TXNS], txnPage = 0;
+let txnData = [...DEMO_TXNS];
+let filteredTxns = [...DEMO_TXNS];
+let txnPage = 0;
 const PER_PAGE = 8;
-const CAT_BADGE = {
-  'Incoming':'b-green','Transfers Out':'b-blue','Airtime & Data':'b-gold',
-  'Food & Groceries':'b-gold','Business Ads':'b-red','Bank Charges':'b-gray',
-  'Savings (PiggyVest)':'b-green','POS Payment':'b-gray','Other':'b-gray','Business Research':'b-gray'
-};
+let chartOverview = null, chartHealth = null, chartDonut = null, chartSpendTrend = null, chartSavingsBar = null, projChart = null;
 
-function renderTxns() {
-  txnPage = 0;
-  const q   = document.getElementById('txn-search').value.toLowerCase();
-  const cat = document.getElementById('txn-cat').value;
-  const typ = document.getElementById('txn-type').value;
-  filteredTxns = txnData.filter(t => {
-    if (q && !t.desc.toLowerCase().includes(q) && !t.cat.toLowerCase().includes(q)) return false;
-    if (cat && t.cat !== cat) return false;
-    if (typ === 'debit' && t.debit === 0) return false;
-    if (typ === 'credit' && t.credit === 0) return false;
-    return true;
-  });
-  const totalDebit  = filteredTxns.reduce((a,t)=>a+t.debit,0);
-  const totalCredit = filteredTxns.reduce((a,t)=>a+t.credit,0);
-  document.getElementById('txn-summary').innerHTML = `
-    <div class="txn-stat">${filteredTxns.length} transactions</div>
-    <div class="txn-stat">Total out: <span style="color:var(--red)">${fmt(totalDebit)}</span></div>
-    <div class="txn-stat">Total in: <span>${fmt(totalCredit)}</span></div>`;
-  renderTxnPage();
-}
-
-function renderTxnPage() {
-  const s = txnPage * PER_PAGE;
-  const slice = filteredTxns.slice(s, s + PER_PAGE);
-  document.getElementById('txn-body').innerHTML = slice.map(t=>`
-    <tr>
-      <td style="color:var(--muted);white-space:nowrap;font-size:12px">${t.date}</td>
-      <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.desc}</td>
-      <td><span class="badge ${CAT_BADGE[t.cat]||'b-gray'}">${t.cat}</span></td>
-      <td style="text-align:right" class="debit">${t.debit>0?fmt(t.debit):''}</td>
-      <td style="text-align:right" class="credit">${t.credit>0?fmt(t.credit):''}</td>
-    </tr>`).join('');
-  const total = filteredTxns.length;
-  const pages = Math.ceil(total/PER_PAGE);
-  document.getElementById('pager-info').textContent = `${s+1}–${Math.min(s+PER_PAGE,total)} of ${total}`;
-  document.getElementById('btn-prev').disabled = txnPage === 0;
-  document.getElementById('btn-next').disabled = txnPage >= pages-1;
-}
-
-function changePage(d) { txnPage += d; renderTxnPage(); }
-
-/* ══ SAVINGS PREDICTOR ══ */
-let projChart = null;
-function runProjection() {
-  const income   = +document.getElementById('p-income').value || 304262;
-  const expenses = +document.getElementById('p-expenses').value || 299440;
-  const current  = +document.getElementById('p-current').value || 0;
-  const goal     = +document.getElementById('p-goal').value || 1000000;
-  const rate     = +document.getElementById('p-rate').value || 12;
-  const method   = document.getElementById('p-method').value;
-  const mRate    = rate/100/12;
-  const monthSave = income - expenses;
-
-  let bal = current;
-  const bals = [current];
-  for (let i=0;i<36;i++) {
-    let save = monthSave;
-    if (method==='growth') save = monthSave * Math.pow(1+(0.05/12),i);
-    bal = method==='linear' ? bal+save : bal*(1+mRate)+save;
-    bals.push(Math.max(0,Math.round(bal)));
-  }
-
-  const goalMonth = bals.findIndex(b=>b>=goal);
-  const headline  = goalMonth>0
-    ? `🎉 Goal of ${fmt(goal)} reached in ${goalMonth} months!`
-    : `At this rate, you'll need more than 36 months to reach ${fmt(goal)}.`;
-
-  document.getElementById('result-headline').textContent = headline;
-  document.getElementById('result-stats').innerHTML = [
-    ['Monthly surplus', fmt(Math.max(0,monthSave))],
-    ['After 12 months', fmt(bals[12]||0)],
-    ['After 24 months', fmt(bals[24]||0)],
-    ['After 36 months', fmt(bals[36]||0)],
-  ].map(([l,v])=>`<div class="rstat"><div class="rstat-label">${l}</div><div class="rstat-val">${v}</div></div>`).join('');
-  document.getElementById('result-box').classList.add('show');
-
-  const labels = ['Now',...Array.from({length:36},(_,i)=>`M${i+1}`)];
-  const goalLine = Array(37).fill(goal);
-  if (projChart) projChart.destroy();
-  projChart = new Chart(document.getElementById('c-projection'),{
-    type:'line',
-    data:{labels,datasets:[
-      {label:'Savings',data:bals,borderColor:'#0a7c4e',backgroundColor:'rgba(10,124,78,0.07)',fill:true,tension:0.4,pointRadius:0,borderWidth:2},
-      {label:'Goal',data:goalLine,borderColor:'#c0392b',borderDash:[5,4],pointRadius:0,borderWidth:1.5,fill:false}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},padding:12,boxWidth:12}}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#7a8c85',maxTicksLimit:13}},
-              y:{grid:{color:'#f0f4f2'},ticks:{callback:v=>fmtK(v),font:{size:11},color:'#7a8c85'}}}}
-  });
-}
-
-function updateExtra(val) {
-  document.getElementById('extra-label').textContent = fmt(+val);
-  const income   = +document.getElementById('p-income').value || 304262;
-  const expenses = +document.getElementById('p-expenses').value || 299440;
-  const goal     = +document.getElementById('p-goal').value || 1000000;
-  const rate     = +document.getElementById('p-rate').value || 12;
-  const mRate    = rate/100/12;
-  const base     = income-expenses;
-  const withExtra= base + +val;
-  let bal=0; let monthsBase=999; let monthsExtra=999;
-  for(let i=1;i<=120;i++){
-    bal=bal*(1+mRate)+withExtra;
-    if(bal>=goal&&monthsExtra===999) monthsExtra=i;
-  }
-  bal=0;
-  for(let i=1;i<=120;i++){
-    bal=bal*(1+mRate)+base;
-    if(bal>=goal&&monthsBase===999) monthsBase=i;
-  }
-  const saved = monthsBase - monthsExtra;
-  document.getElementById('extra-result').innerHTML = saved>0
-    ? `Saving an extra <strong style="color:var(--green)">${fmt(+val)}/month</strong> gets you to your goal <strong style="color:var(--green)">${saved} months earlier</strong> — that's ${Math.floor(saved/12)} year${saved>=24?'s':''} ${saved%12?saved%12+' months':''} of your life back.`
-    : `Enter a goal and amounts above, then adjust the slider to see the impact.`;
-}
-
-/* ══ FILE UPLOAD — CSV / EXCEL / PDF ══ */
-
-// Set PDF.js worker
 if (typeof pdfjsLib !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 }
 
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').classList.remove('drag');
-  const f = e.dataTransfer.files[0];
-  if (f) processFile(f);
-}
-function handleUpload(e) { processFile(e.target.files[0]); }
 
-function showMsg(html) {
-  document.getElementById('upload-msg').innerHTML = html;
-}
-
-function processFile(file) {
-  if (!file) return;
-  const name = file.name.toLowerCase();
-  showMsg(`<div class="upload-msg" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted)">⏳ Reading <strong>${file.name}</strong>...</div>`);
-
-  if (name.endsWith('.csv')) {
-    readCSV(file);
-  } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
-    readExcel(file);
-  } else if (name.endsWith('.pdf')) {
-    readPDF(file);
-  } else {
-    showMsg(`<div class="upload-msg error">❌ Unsupported file type. Please upload a CSV, Excel (.xlsx), or PDF file.</div>`);
+function parseSignedNumber(val) {
+  if (val === null || val === undefined) return null;
+  let s = String(val).replace(/[₦,\s'"\u00A0]/g, '').trim();
+  if (!s || s === '-' || /^nil$/i.test(s)) return null;
+  let negative = false;
+  if (/^\(.*\)$/.test(s)) {
+    negative = true;
+    s = s.slice(1, -1);
   }
-}
-
-/* ── CSV ── */
-function readCSV(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const txns = parseCSVText(e.target.result);
-      finishUpload(txns, 'CSV');
-    } catch(err) {
-      showMsg(`<div class="upload-msg error">❌ Could not parse CSV: ${err.message}</div>`);
-    }
-  };
-  reader.readAsText(file);
-}
-
-function parseCSVText(text) {
-  const lines = text.split('\n').filter(l => l.trim());
-  if (lines.length < 2) throw new Error('File appears empty');
-  const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g,''));
-  const di  = header.findIndex(h => h.includes('date'));
-  const xi  = header.findIndex(h => h.includes('desc') || h.includes('narr') || h.includes('particular') || h.includes('detail'));
-  const dbi = header.findIndex(h => h.includes('debit') || h.includes('dr') || h === 'withdrawal');
-  const cri = header.findIndex(h => h.includes('credit') || h.includes('cr') || h === 'deposit');
-  if (di < 0 || xi < 0) throw new Error('Could not find Date or Description columns. Check your column headers.');
-  return lines.slice(1).map(l => {
-    const c = l.split(',');
-    return {
-      date: c[di]?.trim().replace(/['"]/g,'') || '',
-      desc: (c[xi]?.trim().replace(/['"]/g,'') || '').slice(0,70),
-      debit:  parseAmount(dbi >= 0 ? c[dbi] : ''),
-      credit: parseAmount(cri >= 0 ? c[cri] : ''),
-      cat: 'Other'
-    };
-  }).filter(t => t.date && t.date.length > 3);
-}
-
-/* ── EXCEL ── */
-function readExcel(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const data = new Uint8Array(e.target.result);
-      const wb   = XLSX.read(data, { type: 'array', cellDates: true });
-
-      // Try each sheet, pick the one with most rows
-      let bestSheet = null, bestRows = 0;
-      wb.SheetNames.forEach(name => {
-        const ws   = wb.Sheets[name];
-        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-        if (rows.length > bestRows) { bestRows = rows.length; bestSheet = ws; }
-      });
-
-      if (!bestSheet) throw new Error('No data found in Excel file');
-
-      const rows    = XLSX.utils.sheet_to_json(bestSheet, { header: 1, defval: '' });
-      const txns    = parseRowsToTxns(rows);
-      finishUpload(txns, 'Excel');
-    } catch(err) {
-      showMsg(`<div class="upload-msg error">❌ Could not parse Excel: ${err.message}</div>`);
-    }
-  };
-  reader.readAsArrayBuffer(file);
-}
-
-/* ── PDF ── */
-async function readPDF(file) {
-  if (typeof pdfjsLib === 'undefined') {
-    showMsg(`<div class="upload-msg error">❌ PDF reader failed to load. Try refreshing the page or use CSV/Excel instead.</div>`);
-    return;
-  }
-  try {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf  = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    let   fullText = '';
-
-    for (let p = 1; p <= pdf.numPages; p++) {
-      const page  = await pdf.getPage(p);
-      const tc    = await page.getTextContent();
-      // Sort items by Y then X to preserve row order
-      const items = tc.items.sort((a, b) => {
-        const dy = Math.round(b.transform[5]) - Math.round(a.transform[5]);
-        return dy !== 0 ? dy : a.transform[4] - b.transform[4];
-      });
-      // Group by Y position (same line = within 3px)
-      const lines = [];
-      let   curY  = null, curLine = [];
-      items.forEach(item => {
-        const y = Math.round(item.transform[5]);
-        if (curY === null || Math.abs(y - curY) > 3) {
-          if (curLine.length) lines.push(curLine.join(' '));
-          curLine = [item.str.trim()];
-          curY    = y;
-        } else {
-          curLine.push(item.str.trim());
-        }
-      });
-      if (curLine.length) lines.push(curLine.join(' '));
-      fullText += lines.join('\n') + '\n';
-    }
-
-    const txns = parsePDFText(fullText);
-    finishUpload(txns, 'PDF');
-  } catch(err) {
-    showMsg(`<div class="upload-msg error">❌ Could not read PDF: ${err.message}. If this is a scanned PDF, please export as Excel or CSV instead.</div>`);
-  }
-}
-
-function parsePDFText(text) {
-  const lines  = text.split('\n').map(l => l.trim()).filter(l => l);
-  const txns   = [];
-
-  // Common Nigerian bank date patterns
-  const dateRx = /\b(\d{1,2}[\/\-]\w{2,3}[\/\-]\d{2,4}|\d{2}\s+\w{3}\s+\d{4}|\d{4}-\d{2}-\d{2}|\d{1,2}\s+\w{3,9}\s+\d{4})\b/i;
-  const amtRx  = /[\d,]+\.?\d{0,2}/g;
-
-  lines.forEach(line => {
-    const dateMatch = line.match(dateRx);
-    if (!dateMatch) return;
-    // Extract amounts (last two numbers = debit & credit, or one = debit)
-    const amounts = [...line.matchAll(amtRx)]
-      .map(m => parseFloat(m[0].replace(/,/g,'')))
-      .filter(n => n > 0 && n < 1e10);
-    if (amounts.length === 0) return;
-
-    // Description = everything between date and first amount
-    const dateEnd = line.indexOf(dateMatch[0]) + dateMatch[0].length;
-    const firstAmtIdx = line.search(/[\d,]+\.?\d*\s*$/);
-    let desc = line.slice(dateEnd, firstAmtIdx > dateEnd ? firstAmtIdx : line.length).trim();
-    // Clean up description
-    desc = desc.replace(/[\d,]+\.\d{2}/g, '').trim().slice(0,70);
-
-    let debit = 0, credit = 0;
-    if (amounts.length >= 2) {
-      // Heuristic: if description contains "credit/deposit/received", second is credit
-      const lower = line.toLowerCase();
-      if (lower.includes('cr') || lower.includes('credit') || lower.includes('deposit') || lower.includes('inflow')) {
-        credit = amounts[amounts.length - 1];
-      } else {
-        debit  = amounts[amounts.length - 1];
-      }
-    } else {
-      const lower = line.toLowerCase();
-      if (lower.includes('cr') || lower.includes('credit') || lower.includes('deposit')) {
-        credit = amounts[0];
-      } else {
-        debit  = amounts[0];
-      }
-    }
-
-    if (debit > 0 || credit > 0) {
-      txns.push({ date: dateMatch[0], desc: desc || 'Transaction', debit, credit, cat: 'Other' });
-    }
-  });
-  return txns;
-}
-
-/* ── EXCEL ROW PARSER (finds header row automatically) ── */
-function parseRowsToTxns(rows) {
-  // Find header row — look for row containing "date" and a description keyword
-  let headerIdx = -1;
-  for (let i = 0; i < Math.min(rows.length, 20); i++) {
-    const r = rows[i].map(c => String(c).toLowerCase().trim());
-    const hasDate = r.some(c => c.includes('date'));
-    const hasDesc = r.some(c => c.includes('desc') || c.includes('narr') || c.includes('particular') || c.includes('detail'));
-    if (hasDate && hasDesc) { headerIdx = i; break; }
-  }
-
-  // If no header found, try to auto-detect by looking for date-like patterns
-  if (headerIdx < 0) {
-    for (let i = 0; i < Math.min(rows.length, 30); i++) {
-      const r = rows[i];
-      const hasDateVal = r.some(c => {
-        const s = String(c);
-        return /\d{1,2}[\/\-]\w{2,3}[\/\-]\d{2,4}/.test(s) || /\d{4}-\d{2}-\d{2}/.test(s) || c instanceof Date;
-      });
-      if (hasDateVal && r.length >= 3) { headerIdx = i - 1; break; }
-    }
-  }
-
-  if (headerIdx < 0) throw new Error('Could not find transaction table. Make sure the file has Date and Description columns.');
-
-  const header = rows[headerIdx].map(c => String(c).toLowerCase().trim());
-  const di  = header.findIndex(h => h.includes('date') || h === 'trans. date' || h === 'value date');
-  const xi  = header.findIndex(h => h.includes('desc') || h.includes('narr') || h.includes('particular') || h.includes('detail') || h === 'remarks');
-  const dbi = header.findIndex(h => h.includes('debit') || h === 'dr' || h === 'withdrawal' || h.includes('debit('));
-  const cri = header.findIndex(h => h.includes('credit') || h === 'cr' || h === 'deposit' || h.includes('credit('));
-
-  if (di < 0 || xi < 0) throw new Error(`Could not identify columns. Found: ${header.join(', ')}`);
-
-  const txns = [];
-  for (let i = headerIdx + 1; i < rows.length; i++) {
-    const row = rows[i];
-    if (!row || row.every(c => c === '' || c === null)) continue;
-
-    let dateVal = di >= 0 ? row[di] : '';
-    if (dateVal instanceof Date) {
-      dateVal = dateVal.toISOString().slice(0,10);
-    } else {
-      dateVal = String(dateVal).trim();
-    }
-    if (!dateVal || dateVal.length < 3) continue;
-
-    const desc   = String(row[xi] || '').trim().slice(0,70);
-    const debit  = parseAmount(dbi >= 0 ? row[dbi] : '');
-    const credit = parseAmount(cri >= 0 ? row[cri] : '');
-
-    if (desc || debit > 0 || credit > 0) {
-      txns.push({ date: dateVal, desc: desc || 'Transaction', debit, credit, cat: 'Other' });
-    }
-  }
-  return txns;
-}
-
-/* ── AMOUNT PARSER ── */
-function parseAmount(val) {
-  if (!val && val !== 0) return 0;
-  const s = String(val).replace(/[₦,\s'"]/g, '').replace('--','').trim();
-  if (!s || s === '-' || s.toLowerCase() === 'nil') return 0;
+  if (/^-/.test(s)) negative = true;
+  s = s.replace(/[^\d.\-]/g, '');
   const n = parseFloat(s);
-  return isNaN(n) ? 0 : Math.abs(n);
+  if (!Number.isFinite(n)) return null;
+  return negative ? -Math.abs(n) : n;
 }
 
-/* ── FINISH: apply categorizer + refresh UI ── */
-function categorize(desc) {
-  const d = desc.toLowerCase();
-  if (/airtime|mobile data|datamtn|mtn data|glo data|airtel data/.test(d)) return 'Airtime & Data';
+function parseAmount(val) {
+  const n = parseSignedNumber(val);
+  return Number.isFinite(n) ? Math.abs(n) : 0;
+}
+
+function parseCSVLine(line) {
+  const out = [];
+  let cur = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+      else inQuotes = !inQuotes;
+    } else if (ch === ',' && !inQuotes) {
+      out.push(cur); cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  out.push(cur);
+  return out;
+}
+
+function normalizeDate(value) {
+  if (value instanceof Date && !isNaN(value)) return value.toISOString().slice(0,10);
+  const s = String(value || '').trim();
+  if (!s) return '';
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
+  if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2}$/.test(s)) {
+    const [a,b,c] = s.split(/[\/\-]/).map(Number);
+    const year = c < 100 ? 2000 + c : c;
+    return new Date(year, b - 1, a).toISOString().slice(0,10);
+  }
+  if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}$/.test(s)) {
+    const [a,b,c] = s.split(/[\/\-]/).map(Number);
+    return new Date(c, b - 1, a).toISOString().slice(0,10);
+  }
+  const d = new Date(s);
+  if (!isNaN(d)) return d.toISOString().slice(0,10);
+  return s;
+}
+
+function formatMonthLabel(key) {
+  if (!key) return 'Unknown';
+  const [y,m] = key.split('-');
+  const names = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return names[Number(m)-1] || key;
+}
+
+function isHeaderText(s) {
+  const t = String(s || '').toLowerCase();
+  return /(date|value date|transaction date)/.test(t) && /(description|narration|particular|details|remarks|transaction details)/.test(t);
+}
+
+function isBalanceLine(desc) {
+  return /(opening balance|closing balance|brought forward|carried forward|ledger balance|available balance|book balance)/i.test(String(desc || ''));
+}
+
+function categorize(desc, debit=0, credit=0) {
+  const d = String(desc || '').toLowerCase();
+  if (credit > 0) return 'Incoming';
   if (/piggyvest|piggy/.test(d)) return 'Savings (PiggyVest)';
   if (/owealth|auto-save|spend.?save/.test(d)) return 'Savings (OWealth)';
+  if (/airtime|mobile data|datamtn|mtn data|glo data|airtel data|mtn|glo|airtel/.test(d)) return 'Airtime & Data';
   if (/electricity|nepa|ibedc|ekedc|phcn/.test(d)) return 'Utilities';
-  if (/food|frozen|restaurant|eatery|supermarket|grocery/.test(d)) return 'Food & Groceries';
+  if (/food|frozen|restaurant|eatery|supermarket|grocery|market/.test(d)) return 'Food & Groceries';
   if (/facebook|google|ads/.test(d)) return 'Business Ads';
   if (/school|fees|tuition|university/.test(d)) return 'Education';
   if (/hospital|pharmacy|medical|clinic/.test(d)) return 'Healthcare';
-  if (/card maintenance|levy|maintenance fee|sms charge|vat/.test(d)) return 'Bank Charges';
-  if (/transfer from|received from|inflow/.test(d)) return 'Incoming';
+  if (/card maintenance|levy|maintenance fee|sms charge|vat|charge/.test(d)) return 'Bank Charges';
   if (/transfer to|sent to|outflow/.test(d)) return 'Transfers Out';
+  if (/transfer from|received from|inflow/.test(d)) return 'Incoming';
   if (/pos|point of sale/.test(d)) return 'POS Payment';
   if (/atm|cash withdrawal/.test(d)) return 'Cash Withdrawal';
-  return 'Other';
+  return debit > 0 ? 'Other' : 'Incoming';
 }
 
-function finishUpload(txns, format) {
-  if (!txns || txns.length === 0) {
-    showMsg(`<div class="upload-msg error">❌ No transactions found in this ${format} file. Check that it contains Date, Description, Debit, and Credit columns.</div>`);
-    return;
+function findHeaderIndex(rows) {
+  for (let i = 0; i < Math.min(rows.length, 30); i++) {
+    const rowText = (rows[i] || []).map(c => String(c).trim()).join(' | ');
+    if (isHeaderText(rowText)) return i;
+  }
+  return -1;
+}
+
+function mapHeaderIndexes(header) {
+  const H = header.map(c => String(c).toLowerCase().trim());
+  const idx = {
+    date: H.findIndex(h => /(value )?date/.test(h)),
+    desc: H.findIndex(h => /desc|narr|particular|detail|remarks|transaction details|transaction description/.test(h)),
+    debit: H.findIndex(h => /debit|withdrawal|\bdr\b|money out/.test(h)),
+    credit: H.findIndex(h => /credit|deposit|\bcr\b|money in/.test(h)),
+    balance: H.findIndex(h => /balance|running bal|available bal|ledger bal/.test(h)),
+    amount: H.findIndex(h => /^amount$|transaction amount|amt/.test(h)),
+    type: H.findIndex(h => /type|transaction type|\bdr\/cr\b|indicator/.test(h))
+  };
+  return idx;
+}
+
+function inferDebitCreditFromRow(row, idx, desc) {
+  let debit = 0, credit = 0;
+  if (idx.debit >= 0) debit = parseAmount(row[idx.debit]);
+  if (idx.credit >= 0) credit = parseAmount(row[idx.credit]);
+
+  if ((debit || credit)) return { debit, credit };
+
+  if (idx.amount >= 0) {
+    const signed = parseSignedNumber(row[idx.amount]);
+    const typeText = idx.type >= 0 ? String(row[idx.type] || '').toLowerCase() : '';
+    const descText = String(desc || '').toLowerCase();
+    if (Number.isFinite(signed)) {
+      if (signed < 0) debit = Math.abs(signed);
+      else if (/debit|\bdr\b|withdraw|payment|purchase|charge|transfer to|sent/i.test(typeText + ' ' + descText)) debit = Math.abs(signed);
+      else if (/credit|\bcr\b|deposit|salary|received|transfer from|reversal/i.test(typeText + ' ' + descText)) credit = Math.abs(signed);
+      else credit = Math.abs(signed);
+    }
   }
 
-  // Apply categorizer
-  txns.forEach(t => { t.cat = categorize(t.desc); });
-
-  txnData = txns;
-  filteredTxns = txns;
-
-  const debits  = txns.reduce((s,t) => s+t.debit,  0);
-  const credits = txns.reduce((s,t) => s+t.credit, 0);
-
-  showMsg(`<div class="upload-msg success">
-    ✅ <strong>${txns.length} transactions</strong> loaded from ${format} file.
-    &nbsp;|&nbsp; Total In: <strong>₦${Math.round(credits).toLocaleString()}</strong>
-    &nbsp;|&nbsp; Total Out: <strong>₦${Math.round(debits).toLocaleString()}</strong>
-    <br><span style="font-size:11px;opacity:0.8">Switch to the <strong>Transactions</strong> tab to explore, or the <strong>Overview</strong> tab to see charts.</span>
-  </div>`);
-
-  renderTxns();
+  return { debit, credit };
 }
+
+function parseRowsToTxns(rows) {
+  const headerIdx = findHeaderIndex(rows);
+  if (headerIdx < 0) throw new Error('Could not find a header row with Date and Description columns.');
+
+  const header = rows[headerIdx];
+  const idx = mapHeaderIndexes(header);
+  if (idx.date < 0 || idx.desc < 0) throw new Error('Could not identify Date or Description column.');
+
+  return rows.slice(headerIdx + 1).map(row => {
+    const date = normalizeDate(row[idx.date]);
+    const desc = String(row[idx.desc] || '').trim();
+    const amounts = inferDebitCreditFromRow(row, idx, desc);
+    return { date, desc: desc || 'Transaction', debit: amounts.debit, credit: amounts.credit, cat: categorize(desc, amounts.debit, amounts.credit) };
+  }).filter(t => t.date && !isBalanceLine(t.desc) && (t.debit > 0 || t.credit > 0 || t.desc));
+}
+
+function parseCSVText(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  if (lines.length < 2) throw new Error('File appears empty.');
+  const rows = lines.map(parseCSVLine);
+  return parseRowsToTxns(rows);
+}
+
+function extractAmountsFromText(line) {
+  // Remove date portion first to avoid matching date numbers as amounts
+  const dateRx = /\d{4}-\d{2}-\d{2}|\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}/g;
+  const cleaned = line.replace(dateRx, ' ');
+  const amountRx = /[-(]?₦?[\d,]+(?:\.\d{1,2})?[)]?/g;
+  return [...cleaned.matchAll(amountRx)]
+    .map(m => ({ raw: m[0], value: parseSignedNumber(m[0]) }))
+    .filter(a => Number.isFinite(a.value) && (Math.abs(a.value) >= 1 || a.raw.includes('.')));
+}
+
+function parsePDFText(text) {
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const txns = [];
+  const dateRx = /(\d{4}-\d{2}-\d{2}|\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4})/;
+  for (const line of lines) {
+    const dm = line.match(dateRx);
+    if (!dm) continue;
+    const amounts = extractAmountsFromText(line);
+    if (!amounts.length) continue;
+    const date = normalizeDate(dm[0]);
+    let desc = line.replace(dm[0], '').replace(/[-(]?₦?[\d,]+(?:\.\d{1,2})?[)]?/g, '').replace(/\s+/g, ' ').trim() || 'Transaction';
+    if (isBalanceLine(desc)) continue;
+    const lower = line.toLowerCase();
+    let debit = 0, credit = 0;
+
+    if (/credit|deposit|received|transfer from|salary|reversal|\bcr\b|inflow/.test(lower)) {
+      credit = Math.abs(amounts[0].value);
+    } else if (/debit|transfer to|payment|withdraw|purchase|pos|charge|\bdr\b|outflow/.test(lower)) {
+      debit = Math.abs(amounts[0].value);
+    } else if (amounts.length >= 3) {
+      // Typical bank statement: debit, credit, balance columns
+      const first = amounts[0].value;
+      const second = amounts[1].value;
+      if (Math.abs(first) > 0 && (second === 0 || second === null)) {
+        debit = Math.abs(first);
+      } else if ((first === 0 || first === null) && Math.abs(second) > 0) {
+        credit = Math.abs(second);
+      } else if (first < 0) {
+        debit = Math.abs(first);
+      } else if (second < 0) {
+        debit = Math.abs(second);
+      } else {
+        // Both positive and non-zero — assume first is debit
+        debit = Math.abs(first);
+      }
+    } else if (amounts.length === 2) {
+      const first = amounts[0].value;
+      const second = amounts[1].value;
+      // Could be debit+credit columns or amount+balance
+      if (Math.abs(first) > 0 && (second === 0 || second === null)) {
+        debit = Math.abs(first);
+      } else if ((first === 0 || first === null) && Math.abs(second) > 0) {
+        credit = Math.abs(second);
+      } else if (first < 0) {
+        debit = Math.abs(first);
+      } else {
+        // Single positive amount with balance — use sign heuristic
+        credit = Math.abs(first);
+      }
+    } else {
+      const first = amounts[0].value;
+      if (first < 0) debit = Math.abs(first); else credit = Math.abs(first);
+    }
+
+    txns.push({ date, desc, debit, credit, cat: categorize(desc, debit, credit) });
+  }
+  return txns;
+}
+
+function parsePDFPages(pages) {
+  const lines = [];
+  pages.forEach(pageLines => {
+    pageLines.forEach(line => {
+      const text = line.map(i => String(i.str || '').trim()).filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      lines.push({
+        text,
+        items: line.map(i => ({ str: String(i.str || '').trim(), x: i.transform[4], y: i.transform[5] }))
+      });
+    });
+  });
+
+  const headerLine = lines.find(l => isHeaderText(l.text));
+  if (!headerLine) {
+    return parsePDFText(lines.map(l => l.text).join('\n'));
+  }
+
+  const cols = {};
+  headerLine.items.forEach(it => {
+    const s = it.str.toLowerCase();
+    if (cols.date == null && /(value )?date/.test(s)) cols.date = it.x;
+    else if (cols.desc == null && /desc|narr|particular|detail|remarks|transaction/.test(s)) cols.desc = it.x;
+    else if (cols.debit == null && /debit|withdrawal|\bdr\b/.test(s)) cols.debit = it.x;
+    else if (cols.credit == null && /credit|deposit|\bcr\b/.test(s)) cols.credit = it.x;
+    else if (cols.balance == null && /balance/.test(s)) cols.balance = it.x;
+    else if (cols.amount == null && /^amount$|amt/.test(s)) cols.amount = it.x;
+    else if (cols.type == null && /type|dr\/cr/.test(s)) cols.type = it.x;
+  });
+
+  if (cols.date == null || cols.desc == null) {
+    return parsePDFText(lines.map(l => l.text).join('\n'));
+  }
+
+  const colEntries = Object.entries(cols).filter(([,x]) => x != null).sort((a,b) => a[1] - b[1]);
+  const colKeys = colEntries.map(([k]) => k);
+  const colXs = colEntries.map(([,x]) => x);
+
+  const txns = [];
+  for (const line of lines) {
+    if (line === headerLine || isHeaderText(line.text)) continue;
+    const hasDate = line.items.some(it => /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{4}-\d{2}-\d{2}|\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}/.test(it.str));
+    if (!hasDate) continue;
+
+    const buckets = {};
+    colKeys.forEach(k => buckets[k] = []);
+    line.items.forEach(it => {
+      let nearest = 0;
+      let bestDist = Infinity;
+      colXs.forEach((x, idx) => {
+        const d = Math.abs(it.x - x);
+        if (d < bestDist) { bestDist = d; nearest = idx; }
+      });
+      buckets[colKeys[nearest]].push(it.str);
+    });
+
+    const date = normalizeDate((buckets.date || []).join(' ').trim());
+    const desc = (buckets.desc || []).join(' ').trim() || 'Transaction';
+    if (!date || isBalanceLine(desc)) continue;
+
+    const rowObj = {
+      date: date,
+      desc: desc,
+      debit: buckets.debit ? buckets.debit.join(' ') : '',
+      credit: buckets.credit ? buckets.credit.join(' ') : '',
+      amount: buckets.amount ? buckets.amount.join(' ') : '',
+      type: buckets.type ? buckets.type.join(' ') : ''
+    };
+    const amounts = inferDebitCreditFromRow(rowObj, { date:'date', desc:'desc', debit:'debit', credit:'credit', amount:'amount', type:'type' }, desc);
+    const debit = amounts.debit;
+    const credit = amounts.credit;
+    if (!(debit > 0 || credit > 0)) continue;
+    txns.push({ date, desc, debit, credit, cat: categorize(desc, debit, credit) });
+  }
+
+  return txns.length ? txns : parsePDFText(lines.map(l => l.text).join('\n'));
+}
+function computeStability(values) {
+  if (values.length < 2) return 0.5;
+  const mean = values.reduce((a,b) => a + b, 0) / values.length;
+  if (!mean) return 0;
+  const variance = values.reduce((s,v) => s + Math.pow(v - mean, 2), 0) / values.length;
+  return Math.max(0, Math.min(1, 1 - (Math.sqrt(variance) / mean)));
+}
+
+function computeAnalytics(txns) {
+  const monthMap = {};
+  const savingsCats = new Set(['Savings (PiggyVest)','Savings (OWealth)']);
+  const spendSkip = new Set(['Incoming', ...savingsCats]);
+
+  txns.forEach(t => {
+    const date = normalizeDate(t.date);
+    const monthKey = /^\d{4}-\d{2}/.test(date) ? date.slice(0,7) : 'Unknown';
+    if (!monthMap[monthKey]) monthMap[monthKey] = { income:0, spend:0, saved:0 };
+    if (t.credit > 0) monthMap[monthKey].income += t.credit;
+    if (t.debit > 0) {
+      if (savingsCats.has(t.cat)) monthMap[monthKey].saved += t.debit;
+      else monthMap[monthKey].spend += t.debit;
+    }
+  });
+
+  const sortedMonths = Object.keys(monthMap).filter(k => k !== 'Unknown').sort();
+  const monthly = sortedMonths.map(key => ({ key, label: formatMonthLabel(key), ...monthMap[key] }));
+
+  const catMap = {};
+  txns.forEach(t => {
+    if (t.debit > 0 && !spendSkip.has(t.cat)) catMap[t.cat] = (catMap[t.cat] || 0) + t.debit;
+  });
+  const catTotals = Object.entries(catMap).sort((a,b) => b[1] - a[1]).slice(0,8);
+
+  const totalIncome = txns.reduce((s,t) => s + t.credit, 0);
+  const totalSpend = txns.reduce((s,t) => s + (!spendSkip.has(t.cat) ? t.debit : 0), 0);
+  const totalSaved = txns.reduce((s,t) => s + (savingsCats.has(t.cat) ? t.debit : 0), 0);
+  const avgIncome = totalIncome / Math.max(monthly.length, 1);
+  const avgSpend = totalSpend / Math.max(monthly.length, 1);
+  const savingsRate = totalIncome > 0 ? Math.min((totalSaved / totalIncome) * 100, 100) : 0;
+  const spendRatio = avgIncome > 0 ? avgSpend / avgIncome : 1;
+  const incomeStability = computeStability(monthly.map(m => m.income));
+  let score = 0;
+  score += Math.min(savingsRate * 0.5, 30);
+  score += Math.max(0, (1 - spendRatio) * 40);
+  score += incomeStability * 20;
+  score += Math.min(monthly.length * 0.5, 10);
+  score = Math.max(0, Math.min(100, Math.round(score)));
+  return { monthly, catTotals, totalIncome, totalSpend, totalSaved, avgIncome, avgSpend, savingsRate, score, incomeStability };
+}
+
+function updateCategoryOptions() {
+  const select = document.getElementById('txn-cat');
+  const current = select.value;
+  const categories = [...new Set(txnData.map(t => t.cat))].sort();
+  select.innerHTML = '<option value="">All categories</option>' + categories.map(c => `<option value="${c}">${c}</option>`).join('');
+  if (categories.includes(current)) select.value = current;
+}
+
+function refreshOverviewCharts(A) {
+  const labels = A.monthly.map(m => m.label);
+  const incomes = A.monthly.map(m => m.income);
+  const spends = A.monthly.map(m => m.spend);
+  if (chartOverview) chartOverview.destroy();
+  chartOverview = new Chart(document.getElementById('c-overview'), {
+    type: 'bar',
+    data: { labels, datasets: [
+      { label: 'Income', data: incomes, backgroundColor: '#0a7c4e', borderRadius: 4, barPercentage: 0.55 },
+      { label: 'Spending', data: spends, backgroundColor: '#f5a5a0', borderRadius: 4, barPercentage: 0.55 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+      scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => fmtK(v) } } } }
+  });
+
+  if (chartHealth) chartHealth.destroy();
+  chartHealth = new Chart(document.getElementById('c-health'), {
+    type: 'doughnut',
+    data: { datasets: [{ data: [A.score, 100 - A.score], backgroundColor: ['#0a7c4e', '#e0e8e4'], borderWidth: 0 }] },
+    options: { responsive: false, cutout: '72%', plugins: { legend: { display: false }, tooltip: { enabled: false } } }
+  });
+}
+
+function refreshSpendingCharts(A) {
+  const cats = A.catTotals.map(([c]) => c);
+  const vals = A.catTotals.map(([,v]) => v);
+  const colors = cats.map((_, i) => CAT_COLORS[i % CAT_COLORS.length]);
+  const total = vals.reduce((a,b) => a+b, 0);
+  const max = Math.max(...vals, 1);
+
+  document.getElementById('cat-bars-container').innerHTML = cats.length ? cats.map((c, i) => `
+    <div class="cat-row">
+      <div class="cat-emoji">${CAT_EMOJIS[c] || '📦'}</div>
+      <div class="cat-name">${c}</div>
+      <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${(vals[i] / max * 100).toFixed(1)}%;background:${colors[i]}"></div></div>
+      <div class="cat-amount">${fmtK(vals[i])}</div>
+    </div>`).join('') : '<div style="color:var(--muted);padding:20px;text-align:center">No spending data found</div>';
+
+  if (chartDonut) chartDonut.destroy();
+  chartDonut = new Chart(document.getElementById('c-donut'), {
+    type: 'doughnut',
+    data: { labels: cats, datasets: [{ data: vals, backgroundColor: colors, borderColor: '#fff', borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { display: false } } }
+  });
+
+  document.getElementById('donut-legend').innerHTML = cats.map((c, i) => `<span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)"><span style="width:10px;height:10px;border-radius:2px;background:${colors[i]}"></span>${c}${total ? ` (${Math.round(vals[i]/total*100)}%)` : ''}</span>`).join('');
+
+  if (chartSpendTrend) chartSpendTrend.destroy();
+  chartSpendTrend = new Chart(document.getElementById('c-spending-trend'), {
+    type: 'line',
+    data: { labels: A.monthly.map(m => m.label), datasets: [{ label: 'Spending', data: A.monthly.map(m => m.spend), borderColor: '#c0392b', backgroundColor: 'rgba(192,57,43,0.07)', fill: true, tension: 0.35, pointRadius: 3 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+
+  if (chartSavingsBar) chartSavingsBar.destroy();
+  chartSavingsBar = new Chart(document.getElementById('c-savings-bar'), {
+    type: 'bar',
+    data: { labels: A.monthly.map(m => m.label), datasets: [{ label: 'Saved', data: A.monthly.map(m => m.saved), backgroundColor: '#1a4fa0', borderRadius: 4, barPercentage: 0.6 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+}
+
+function refreshInsights(A) {
+  const insights = [];
+  if (A.catTotals.length) {
+    const [topCat, topVal] = A.catTotals[0];
+    const pct = A.totalSpend ? Math.round(topVal / A.totalSpend * 100) : 0;
+    insights.push({ t: 'warning', emoji: '⚠️', title: `${topCat} is your biggest expense`, desc: `You spent ${fmt(topVal)} on ${topCat}, which is ${pct}% of your detected spending.` });
+  }
+  if (A.avgIncome > 0 && A.avgSpend >= A.avgIncome * 0.9) {
+    insights.push({ t: 'alert', emoji: '🔴', title: 'Spending is very close to income', desc: `Average monthly spending is ${fmt(Math.round(A.avgSpend))} versus average income of ${fmt(Math.round(A.avgIncome))}.` });
+  } else if (A.avgIncome > A.avgSpend) {
+    insights.push({ t: 'positive', emoji: '✅', title: 'Positive cash flow detected', desc: `Average monthly surplus is about ${fmt(Math.round(A.avgIncome - A.avgSpend))}.` });
+  }
+  const overspentMonths = A.monthly.filter(m => m.income > 0 && m.spend > m.income);
+  if (overspentMonths.length) {
+    insights.push({ t: 'alert', emoji: '📉', title: `Overspending detected in ${overspentMonths.length} month${overspentMonths.length > 1 ? 's' : ''}`, desc: `Months affected: ${overspentMonths.map(m => m.label).join(', ')}.` });
+  }
+  if (A.totalSaved > 0) {
+    insights.push({ t: 'positive', emoji: '🏦', title: 'Savings transfers were detected', desc: `${fmt(A.totalSaved)} was moved into savings-related transactions in this statement.` });
+  } else {
+    insights.push({ t: 'warning', emoji: '⚠️', title: 'No savings transfers detected', desc: 'Consider setting up a recurring savings transfer so the dashboard can track it clearly.' });
+  }
+  const label = A.score >= 70 ? 'Good' : A.score >= 50 ? 'Fair' : 'Needs attention';
+  insights.push({ t: A.score >= 70 ? 'positive' : A.score >= 50 ? 'warning' : 'alert', emoji: '📊', title: `Financial Health Score: ${A.score}/100 — ${label}`, desc: `This score reflects spending control, savings rate, and income consistency.` });
+
+  document.getElementById('insights-container').innerHTML = insights.map(i => `
+    <div class="insight-card ${i.t}">
+      <div class="insight-emoji">${i.emoji}</div>
+      <div class="insight-body"><div class="ins-title">${i.title}</div><div class="ins-desc">${i.desc}</div></div>
+    </div>`).join('');
+}
+
+function updateHealthUI(A) {
+  const spendRatio = A.avgIncome > 0 ? A.avgSpend / A.avgIncome : 1;
+  const emergencyMonths = A.avgSpend > 0 ? A.totalSaved / A.avgSpend : 0;
+  document.getElementById('health-score-label').textContent = A.score;
+  document.getElementById('health-savings').textContent = A.savingsRate >= 20 ? 'Strong' : A.savingsRate >= 10 ? 'Good' : A.totalSaved > 0 ? 'Building' : 'Low';
+  document.getElementById('health-spending').textContent = spendRatio <= 0.7 ? 'Excellent' : spendRatio <= 0.9 ? 'Fair' : 'High';
+  document.getElementById('health-income').textContent = A.incomeStability >= 0.7 ? 'Stable' : A.incomeStability >= 0.4 ? 'Moderate' : 'Low';
+  document.getElementById('health-emergency').textContent = emergencyMonths >= 3 ? 'Ready' : emergencyMonths >= 1 ? 'Building' : 'Starter';
+}
+
+function updateLiteracyUI(A) {
+  const spendPct = A.totalIncome > 0 ? Math.round((A.totalSpend / A.totalIncome) * 100) : 0;
+  const savePct = A.totalIncome > 0 ? Math.round((A.totalSaved / A.totalIncome) * 100) : 0;
+  const emergencyLow = Math.round(A.avgSpend * 3);
+  const emergencyHigh = Math.round(A.avgSpend * 6);
+  const top = A.catTotals[0];
+  const topMonthlyCost = top && A.monthly.length ? Math.round(top[1] / A.monthly.length) : 0;
+  const fiveYearValue = Math.round(10000 * ((((1 + 0.12 / 12) ** 60) - 1) / (0.12 / 12)));
+  document.getElementById('lit-503020').innerHTML = `Your latest statement suggests you spend about <strong>${spendPct}% of income</strong> and save about <strong>${savePct}% of income</strong>. A healthy long-term goal is to gradually move savings toward 20%.`;
+  document.getElementById('lit-networth').innerHTML = `Average income is <strong>${fmt(Math.round(A.avgIncome))}</strong> per month while average spending is <strong>${fmt(Math.round(A.avgSpend))}</strong>. Protecting that difference is what grows your financial position.`;
+  document.getElementById('lit-emergency').innerHTML = `With average monthly spending of <strong>${fmt(Math.round(A.avgSpend))}</strong>, a basic emergency fund target is around <strong>${fmt(emergencyLow)} to ${fmt(emergencyHigh)}</strong>.`;
+  document.getElementById('lit-warning').innerHTML = top ? `Your top detected spending category is <strong>${top[0]}</strong> at <strong>${fmt(top[1])}</strong> total, or roughly <strong>${fmt(topMonthlyCost)}/month</strong>. Redirecting <strong>${fmt(10000)}</strong> monthly into savings at 12% yearly could grow to about <strong>${fmt(fiveYearValue)}</strong> in 5 years.` : 'Upload more transaction data to identify your biggest recurring spending pattern.';
+}
+
+function updateMetaUI(A) {
+  const months = A.monthly;
+  const start = months[0]?.label || 'No data';
+  const end = months[months.length - 1]?.label || 'No data';
+  const period = months.length > 1 ? `${start} – ${end}` : start;
+  const scoreLabel = A.score >= 70 ? 'Good' : A.score >= 50 ? 'Fair' : 'Needs attention';
+  document.getElementById('user-pill').textContent = `${txnData.length.toLocaleString()} transactions loaded`;
+  document.getElementById('period-pill').textContent = period;
+  document.getElementById('overview-badge').textContent = period;
+  document.getElementById('hero-score').textContent = A.score;
+  document.getElementById('hero-score-text').textContent = `${scoreLabel} — ${A.avgIncome > A.avgSpend ? 'you are spending within your income.' : 'your spending needs attention.'}`;
+  document.getElementById('m-income').textContent = fmtK(A.totalIncome);
+  document.getElementById('m-income-change').textContent = `Avg ${fmtK(Math.round(A.avgIncome))} per month`;
+  document.getElementById('m-spending').textContent = fmtK(A.totalSpend);
+  document.getElementById('m-spending-change').textContent = `Avg ${fmtK(Math.round(A.avgSpend))} per month`;
+  document.getElementById('m-saved').textContent = fmtK(A.totalSaved);
+  document.getElementById('m-saved-change').textContent = `${Math.round(A.savingsRate)}% of income moved to savings`;
+  document.getElementById('m-interest').textContent = `${A.score}/100`;
+}
+
+function refreshDashboard() {
+  const A = computeAnalytics(txnData);
+  updateMetaUI(A);
+  updateHealthUI(A);
+  updateLiteracyUI(A);
+  refreshOverviewCharts(A);
+  refreshSpendingCharts(A);
+  refreshInsights(A);
+  updateCategoryOptions();
+  document.getElementById('p-income').value = Math.round(A.avgIncome);
+  document.getElementById('p-expenses').value = Math.round(A.avgSpend);
+  renderTxns();
+  runProjection();
+  updateExtra(document.getElementById('extra-slider').value);
+}
+
+function renderTxns() {
+  txnPage = 0;
+  const q = document.getElementById('txn-search').value.toLowerCase();
+  const cat = document.getElementById('txn-cat').value;
+  const type = document.getElementById('txn-type').value;
+  filteredTxns = txnData.filter(t => {
+    const text = `${t.desc} ${t.cat} ${t.date}`.toLowerCase();
+    if (q && !text.includes(q)) return false;
+    if (cat && t.cat !== cat) return false;
+    if (type === 'debit' && !(t.debit > 0)) return false;
+    if (type === 'credit' && !(t.credit > 0)) return false;
+    return true;
+  });
+  const totalDebit = filteredTxns.reduce((a,t) => a + t.debit, 0);
+  const totalCredit = filteredTxns.reduce((a,t) => a + t.credit, 0);
+  document.getElementById('txn-summary').innerHTML = `<div class="txn-stat">${filteredTxns.length} transactions</div><div class="txn-stat">Total out: <span style="color:var(--red);font-weight:700">${fmt(totalDebit)}</span></div><div class="txn-stat">Total in: <span style="font-weight:700;color:var(--green)">${fmt(totalCredit)}</span></div>`;
+  renderTxnPage();
+}
+
+function renderTxnPage() {
+  const start = txnPage * PER_PAGE;
+  const slice = filteredTxns.slice(start, start + PER_PAGE);
+  document.getElementById('txn-body').innerHTML = slice.length ? slice.map(t => `
+    <tr>
+      <td style="color:var(--muted);white-space:nowrap;font-size:12px">${t.date}</td>
+      <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.desc}</td>
+      <td><span class="badge ${CAT_BADGE[t.cat] || 'b-gray'}">${t.cat}</span></td>
+      <td style="text-align:right" class="debit">${t.debit > 0 ? fmt(t.debit) : ''}</td>
+      <td style="text-align:right" class="credit">${t.credit > 0 ? fmt(t.credit) : ''}</td>
+    </tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--muted)">No transactions match the selected filters.</td></tr>';
+  const total = filteredTxns.length;
+  const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+  document.getElementById('pager-info').textContent = total ? `${start + 1}–${Math.min(start + PER_PAGE, total)} of ${total}` : '0 of 0';
+  document.getElementById('btn-prev').disabled = txnPage === 0;
+  document.getElementById('btn-next').disabled = txnPage >= pages - 1 || total === 0;
+}
+
+function changePage(delta) {
+  const totalPages = Math.max(1, Math.ceil(filteredTxns.length / PER_PAGE));
+  txnPage = Math.max(0, Math.min(totalPages - 1, txnPage + delta));
+  renderTxnPage();
+}
+
+function runProjection() {
+  const income = Number(document.getElementById('p-income').value || 0);
+  const expenses = Number(document.getElementById('p-expenses').value || 0);
+  const current = Number(document.getElementById('p-current').value || 0);
+  const goal = Number(document.getElementById('p-goal').value || 0);
+  const rate = Number(document.getElementById('p-rate').value || 0) / 100 / 12;
+  const method = document.getElementById('p-method').value;
+  const baseMonthlySave = Math.max(0, income - expenses);
+  let bal = current;
+  const values = [current];
+  for (let i = 0; i < 36; i++) {
+    let save = baseMonthlySave;
+    if (method === 'growth') save = baseMonthlySave * Math.pow(1 + (0.05 / 12), i);
+    bal = method === 'linear' ? bal + save : bal * (1 + rate) + save;
+    values.push(Math.max(0, Math.round(bal)));
+  }
+  const goalMonth = values.findIndex(v => v >= goal && goal > 0);
+  document.getElementById('result-box').classList.add('show');
+  document.getElementById('result-headline').textContent = goal > 0 && goalMonth > 0 ? `🎉 Goal of ${fmt(goal)} reached in ${goalMonth} month${goalMonth > 1 ? 's' : ''}` : `⚠️ Goal not reached within 36 months`;
+  document.getElementById('result-stats').innerHTML = `
+    <div class="rstat"><div class="rstat-label">Monthly Savings</div><div class="rstat-val">${fmt(baseMonthlySave)}</div></div>
+    <div class="rstat"><div class="rstat-label">Projected Balance</div><div class="rstat-val">${fmt(values[values.length - 1])}</div></div>
+    <div class="rstat"><div class="rstat-label">Goal Amount</div><div class="rstat-val">${fmt(goal)}</div></div>
+    <div class="rstat"><div class="rstat-label">Projection Model</div><div class="rstat-val" style="font-size:14px">${method === 'linear' ? 'Linear' : method === 'growth' ? 'Growth' : 'Compound'}</div></div>`;
+  if (projChart) projChart.destroy();
+  projChart = new Chart(document.getElementById('c-projection'), {
+    type: 'line',
+    data: { labels: Array.from({length: values.length}, (_, i) => `M${i}`), datasets: [{ label: 'Balance', data: values, borderColor: '#0a7c4e', backgroundColor: 'rgba(10,124,78,0.07)', fill: true, tension: 0.3, pointRadius: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+}
+
+function updateExtra(val) {
+  const extra = Number(val || 0);
+  document.getElementById('extra-label').textContent = fmt(extra);
+  const income = Number(document.getElementById('p-income').value || 0);
+  const expenses = Number(document.getElementById('p-expenses').value || 0);
+  const goal = Number(document.getElementById('p-goal').value || 0);
+  const rate = Number(document.getElementById('p-rate').value || 0) / 100 / 12;
+  const base = Math.max(0, income - expenses);
+  const withExtra = base + extra;
+  const monthsToGoal = savePerMonth => {
+    let bal = 0;
+    for (let i = 1; i <= 120; i++) {
+      bal = bal * (1 + rate) + savePerMonth;
+      if (bal >= goal && goal > 0) return i;
+    }
+    return null;
+  };
+  const a = monthsToGoal(base);
+  const b = monthsToGoal(withExtra);
+  document.getElementById('extra-result').innerHTML = a && b ? `Saving an extra <strong style="color:var(--green)">${fmt(extra)}/month</strong> gets you there <strong style="color:var(--green)">${a - b} month${a - b === 1 ? '' : 's'} earlier</strong>.` : 'Adjust your goal and income values to test the impact of extra savings.';
+}
+
+function showMsg(html) { document.getElementById('upload-msg').innerHTML = html; }
+
+async function processFile(file) {
+  if (!file) return;
+  showMsg(`<div class="upload-msg" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted)">⏳ Reading <strong>${file.name}</strong>...</div>`);
+  try {
+    let txns = [];
+    const name = file.name.toLowerCase();
+    if (name.endsWith('.csv')) {
+      const text = await file.text();
+      txns = parseCSVText(text);
+    } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+      const data = new Uint8Array(await file.arrayBuffer());
+      const wb = XLSX.read(data, { type: 'array', cellDates: true });
+      let best = [];
+      wb.SheetNames.forEach(sheetName => {
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { header: 1, defval: '' });
+        if (rows.length > best.length) best = rows;
+      });
+      txns = parseRowsToTxns(best);
+    } else if (name.endsWith('.pdf')) {
+      const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+      const pages = [];
+      for (let p = 1; p <= pdf.numPages; p++) {
+        const page = await pdf.getPage(p);
+        const tc = await page.getTextContent();
+        const items = [...tc.items].sort((a,b) => {
+          const dy = Math.round(b.transform[5]) - Math.round(a.transform[5]);
+          return dy !== 0 ? dy : a.transform[4] - b.transform[4];
+        });
+        let currentY = null;
+        let currentLine = [];
+        const lines = [];
+        items.forEach(item => {
+          const y = Math.round(item.transform[5]);
+          if (currentY === null || Math.abs(y - currentY) > 3) {
+            if (currentLine.length) lines.push(currentLine);
+            currentLine = [item];
+            currentY = y;
+          } else {
+            currentLine.push(item);
+          }
+        });
+        if (currentLine.length) lines.push(currentLine);
+        pages.push(lines);
+      }
+      txns = parsePDFPages(pages);
+    } else {
+      throw new Error('Unsupported file type. Use CSV, Excel, or PDF.');
+    }
+
+    txns = txns.map(t => ({ ...t, cat: categorize(t.desc, t.debit, t.credit) })).filter(t => t.date && (t.debit > 0 || t.credit > 0 || t.desc));
+    if (!txns.length) throw new Error('No transactions were detected in that file.');
+    txnData = txns;
+    filteredTxns = [...txns];
+    refreshDashboard();
+    showMsg(`<div class="upload-msg success">✅ <strong>${txns.length} transactions</strong> loaded successfully. The dashboard now reflects the uploaded statement instead of the hardcoded demo data.</div>`);
+    openTab('overview');
+  } catch (err) {
+    showMsg(`<div class="upload-msg error">❌ ${err.message}</div>`);
+  }
+}
+
+function openTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(`panel-${name}`).classList.add('active');
+  document.querySelector(`.nav-tab[data-tab="${name}"]`).classList.add('active');
+  if (name === 'transactions') renderTxns();
+  if (name === 'predictor') { runProjection(); updateExtra(document.getElementById('extra-slider').value); }
+}
+
+function initEvents() {
+  document.querySelectorAll('.nav-tab').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.tab)));
+  document.getElementById('txn-search').addEventListener('input', renderTxns);
+  document.getElementById('txn-cat').addEventListener('change', renderTxns);
+  document.getElementById('txn-type').addEventListener('change', renderTxns);
+  document.getElementById('btn-prev').addEventListener('click', () => changePage(-1));
+  document.getElementById('btn-next').addEventListener('click', () => changePage(1));
+  document.getElementById('predict-btn').addEventListener('click', runProjection);
+  document.getElementById('extra-slider').addEventListener('input', e => updateExtra(e.target.value));
+  ['p-income','p-expenses','p-current','p-goal','p-rate','p-method'].forEach(id => document.getElementById(id).addEventListener('input', runProjection));
+  const zone = document.getElementById('upload-zone');
+  const input = document.getElementById('file-input');
+  zone.addEventListener('click', () => input.click());
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag'); processFile(e.dataTransfer.files[0]); });
+  input.addEventListener('change', e => processFile(e.target.files[0]));
+}
+
+initEvents();
+refreshDashboard();
 </script>
 </body>
 </html>

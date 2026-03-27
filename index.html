@@ -6,6 +6,8 @@
 <title>FinSight — Know Your Money</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 :root {
   --green: #0a7c4e;
@@ -439,7 +441,7 @@ tr:hover td { background: var(--surface2); }
 <div class="hero">
   <div class="hero-label">Financial Inclusion Tool</div>
   <div class="hero-title">Know your money.<br>Control your future.</div>
-  <div class="hero-sub">Upload your bank statement and instantly understand where your money goes, how to save smarter, and how to reach your goals.</div>
+  <div class="hero-sub">Upload your bank statement — CSV, Excel, or PDF — and instantly understand where your money goes, how to save smarter, and how to reach your goals.</div>
   <div class="hero-score">
     <div class="score-badge" id="hero-score">62</div>
     <div>
@@ -457,7 +459,7 @@ tr:hover td { background: var(--surface2); }
     <button class="nav-tab" onclick="showTab('transactions',this)"><span class="nav-icon">📋</span> Transactions</button>
     <button class="nav-tab" onclick="showTab('predictor',this)"><span class="nav-icon">🎯</span> Savings Goal</button>
     <button class="nav-tab" onclick="showTab('literacy',this)"><span class="nav-icon">📚</span> Financial Tips</button>
-    <button class="nav-tab" onclick="showTab('upload',this)"><span class="nav-icon">📂</span> Import Data</button>
+    <button class="nav-tab" onclick="showTab('upload',this)"><span class="nav-icon">📂</span> Import Data (CSV / Excel / PDF)</button>
   </nav>
 </div>
 
@@ -779,23 +781,44 @@ tr:hover td { background: var(--surface2); }
       ondrop="handleDrop(event)">
       <div class="upload-emoji">📂</div>
       <div class="upload-title">Drop your bank statement here</div>
-      <div class="upload-sub">Click to browse, or drag and drop your CSV file</div>
+      <div class="upload-sub">Click to browse — supports CSV, Excel (.xlsx), and PDF</div>
       <div class="supported">
+        <span class="bank-pill">📊 Excel (.xlsx)</span>
+        <span class="bank-pill">📄 PDF</span>
+        <span class="bank-pill">📋 CSV</span>
         <span class="bank-pill">OPay</span>
         <span class="bank-pill">Kuda</span>
         <span class="bank-pill">GTBank</span>
         <span class="bank-pill">Access Bank</span>
-        <span class="bank-pill">PiggyVest</span>
-        <span class="bank-pill">Any CSV</span>
+        <span class="bank-pill">Zenith</span>
+        <span class="bank-pill">First Bank</span>
+        <span class="bank-pill">UBA</span>
       </div>
     </div>
-    <input type="file" id="file-input" accept=".csv" style="display:none" onchange="handleUpload(event)">
+    <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none" onchange="handleUpload(event)">
     <div id="upload-msg"></div>
   </div>
 
   <div class="card">
-    <div class="card-header"><div class="card-title">Expected CSV format</div></div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Export your statement from your banking app as CSV, or format it with these column names:</div>
+    <div class="card-header"><div class="card-title">Supported formats</div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
+        <div style="font-size:20px;margin-bottom:6px">📊</div>
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">Excel (.xlsx / .xls)</div>
+        <div style="font-size:12px;color:var(--muted)">Most Nigerian banks export statements as Excel. OPay, GTBank, Zenith, First Bank, UBA all supported.</div>
+      </div>
+      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
+        <div style="font-size:20px;margin-bottom:6px">📄</div>
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px">PDF Statement</div>
+        <div style="font-size:12px;color:var(--muted)">Bank-generated PDF statements. FinSight extracts the transaction table automatically. Works best with text-based PDFs.</div>
+      </div>
+      <div style="padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
+        <div style="font-size:20px;margin-bottom:6px">📋</div>
+        <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px">CSV</div>
+        <div style="font-size:12px;color:var(--muted)">Comma-separated values. Export from any banking app or spreadsheet with columns: Date, Description, Debit, Credit.</div>
+      </div>
+    </div>
+    <div class="card-header"><div class="card-title">Expected column structure (all formats)</div></div>
     <div class="txn-table-wrap">
       <table>
         <thead><tr><th>Date</th><th>Description</th><th>Debit</th><th>Credit</th></tr></thead>
@@ -1089,7 +1112,13 @@ function updateExtra(val) {
     : `Enter a goal and amounts above, then adjust the slider to see the impact.`;
 }
 
-/* ══ FILE UPLOAD ══ */
+/* ══ FILE UPLOAD — CSV / EXCEL / PDF ══ */
+
+// Set PDF.js worker
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
 function handleDrop(e) {
   e.preventDefault();
   document.getElementById('upload-zone').classList.remove('drag');
@@ -1097,30 +1126,290 @@ function handleDrop(e) {
   if (f) processFile(f);
 }
 function handleUpload(e) { processFile(e.target.files[0]); }
+
+function showMsg(html) {
+  document.getElementById('upload-msg').innerHTML = html;
+}
+
 function processFile(file) {
+  if (!file) return;
+  const name = file.name.toLowerCase();
+  showMsg(`<div class="upload-msg" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted)">⏳ Reading <strong>${file.name}</strong>...</div>`);
+
+  if (name.endsWith('.csv')) {
+    readCSV(file);
+  } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+    readExcel(file);
+  } else if (name.endsWith('.pdf')) {
+    readPDF(file);
+  } else {
+    showMsg(`<div class="upload-msg error">❌ Unsupported file type. Please upload a CSV, Excel (.xlsx), or PDF file.</div>`);
+  }
+}
+
+/* ── CSV ── */
+function readCSV(file) {
   const reader = new FileReader();
   reader.onload = e => {
-    const lines = e.target.result.split('\n').filter(l=>l.trim());
-    const header = lines[0].split(',').map(h=>h.trim().toLowerCase());
-    const di = header.findIndex(h=>h.includes('date'));
-    const xi = header.findIndex(h=>h.includes('desc'));
-    const dbi= header.findIndex(h=>h.includes('debit'));
-    const cri= header.findIndex(h=>h.includes('credit'));
-    if (di<0||xi<0) {
-      document.getElementById('upload-msg').innerHTML = `<div class="upload-msg error">Could not read file. Make sure columns are: Date, Description, Debit, Credit</div>`;
-      return;
+    try {
+      const txns = parseCSVText(e.target.result);
+      finishUpload(txns, 'CSV');
+    } catch(err) {
+      showMsg(`<div class="upload-msg error">❌ Could not parse CSV: ${err.message}</div>`);
     }
-    const parsed = lines.slice(1).map(l=>{
-      const c=l.split(',');
-      return {date:c[di]?.trim()||'',desc:(c[xi]?.trim()||'').slice(0,60),
-        debit:parseFloat((c[dbi]||'').replace(/[₦,]/g,''))||0,
-        credit:parseFloat((c[cri]||'').replace(/[₦,]/g,''))||0,cat:'Other'};
-    }).filter(t=>t.date);
-    txnData = parsed; filteredTxns = parsed;
-    document.getElementById('upload-msg').innerHTML = `<div class="upload-msg success">✓ ${parsed.length} transactions loaded. Switch to the Transactions tab to explore.</div>`;
-    renderTxns();
   };
   reader.readAsText(file);
+}
+
+function parseCSVText(text) {
+  const lines = text.split('\n').filter(l => l.trim());
+  if (lines.length < 2) throw new Error('File appears empty');
+  const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g,''));
+  const di  = header.findIndex(h => h.includes('date'));
+  const xi  = header.findIndex(h => h.includes('desc') || h.includes('narr') || h.includes('particular') || h.includes('detail'));
+  const dbi = header.findIndex(h => h.includes('debit') || h.includes('dr') || h === 'withdrawal');
+  const cri = header.findIndex(h => h.includes('credit') || h.includes('cr') || h === 'deposit');
+  if (di < 0 || xi < 0) throw new Error('Could not find Date or Description columns. Check your column headers.');
+  return lines.slice(1).map(l => {
+    const c = l.split(',');
+    return {
+      date: c[di]?.trim().replace(/['"]/g,'') || '',
+      desc: (c[xi]?.trim().replace(/['"]/g,'') || '').slice(0,70),
+      debit:  parseAmount(dbi >= 0 ? c[dbi] : ''),
+      credit: parseAmount(cri >= 0 ? c[cri] : ''),
+      cat: 'Other'
+    };
+  }).filter(t => t.date && t.date.length > 3);
+}
+
+/* ── EXCEL ── */
+function readExcel(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = new Uint8Array(e.target.result);
+      const wb   = XLSX.read(data, { type: 'array', cellDates: true });
+
+      // Try each sheet, pick the one with most rows
+      let bestSheet = null, bestRows = 0;
+      wb.SheetNames.forEach(name => {
+        const ws   = wb.Sheets[name];
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        if (rows.length > bestRows) { bestRows = rows.length; bestSheet = ws; }
+      });
+
+      if (!bestSheet) throw new Error('No data found in Excel file');
+
+      const rows    = XLSX.utils.sheet_to_json(bestSheet, { header: 1, defval: '' });
+      const txns    = parseRowsToTxns(rows);
+      finishUpload(txns, 'Excel');
+    } catch(err) {
+      showMsg(`<div class="upload-msg error">❌ Could not parse Excel: ${err.message}</div>`);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+/* ── PDF ── */
+async function readPDF(file) {
+  if (typeof pdfjsLib === 'undefined') {
+    showMsg(`<div class="upload-msg error">❌ PDF reader failed to load. Try refreshing the page or use CSV/Excel instead.</div>`);
+    return;
+  }
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf  = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let   fullText = '';
+
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const page  = await pdf.getPage(p);
+      const tc    = await page.getTextContent();
+      // Sort items by Y then X to preserve row order
+      const items = tc.items.sort((a, b) => {
+        const dy = Math.round(b.transform[5]) - Math.round(a.transform[5]);
+        return dy !== 0 ? dy : a.transform[4] - b.transform[4];
+      });
+      // Group by Y position (same line = within 3px)
+      const lines = [];
+      let   curY  = null, curLine = [];
+      items.forEach(item => {
+        const y = Math.round(item.transform[5]);
+        if (curY === null || Math.abs(y - curY) > 3) {
+          if (curLine.length) lines.push(curLine.join(' '));
+          curLine = [item.str.trim()];
+          curY    = y;
+        } else {
+          curLine.push(item.str.trim());
+        }
+      });
+      if (curLine.length) lines.push(curLine.join(' '));
+      fullText += lines.join('\n') + '\n';
+    }
+
+    const txns = parsePDFText(fullText);
+    finishUpload(txns, 'PDF');
+  } catch(err) {
+    showMsg(`<div class="upload-msg error">❌ Could not read PDF: ${err.message}. If this is a scanned PDF, please export as Excel or CSV instead.</div>`);
+  }
+}
+
+function parsePDFText(text) {
+  const lines  = text.split('\n').map(l => l.trim()).filter(l => l);
+  const txns   = [];
+
+  // Common Nigerian bank date patterns
+  const dateRx = /\b(\d{1,2}[\/\-]\w{2,3}[\/\-]\d{2,4}|\d{2}\s+\w{3}\s+\d{4}|\d{4}-\d{2}-\d{2}|\d{1,2}\s+\w{3,9}\s+\d{4})\b/i;
+  const amtRx  = /[\d,]+\.?\d{0,2}/g;
+
+  lines.forEach(line => {
+    const dateMatch = line.match(dateRx);
+    if (!dateMatch) return;
+    // Extract amounts (last two numbers = debit & credit, or one = debit)
+    const amounts = [...line.matchAll(amtRx)]
+      .map(m => parseFloat(m[0].replace(/,/g,'')))
+      .filter(n => n > 0 && n < 1e10);
+    if (amounts.length === 0) return;
+
+    // Description = everything between date and first amount
+    const dateEnd = line.indexOf(dateMatch[0]) + dateMatch[0].length;
+    const firstAmtIdx = line.search(/[\d,]+\.?\d*\s*$/);
+    let desc = line.slice(dateEnd, firstAmtIdx > dateEnd ? firstAmtIdx : line.length).trim();
+    // Clean up description
+    desc = desc.replace(/[\d,]+\.\d{2}/g, '').trim().slice(0,70);
+
+    let debit = 0, credit = 0;
+    if (amounts.length >= 2) {
+      // Heuristic: if description contains "credit/deposit/received", second is credit
+      const lower = line.toLowerCase();
+      if (lower.includes('cr') || lower.includes('credit') || lower.includes('deposit') || lower.includes('inflow')) {
+        credit = amounts[amounts.length - 1];
+      } else {
+        debit  = amounts[amounts.length - 1];
+      }
+    } else {
+      const lower = line.toLowerCase();
+      if (lower.includes('cr') || lower.includes('credit') || lower.includes('deposit')) {
+        credit = amounts[0];
+      } else {
+        debit  = amounts[0];
+      }
+    }
+
+    if (debit > 0 || credit > 0) {
+      txns.push({ date: dateMatch[0], desc: desc || 'Transaction', debit, credit, cat: 'Other' });
+    }
+  });
+  return txns;
+}
+
+/* ── EXCEL ROW PARSER (finds header row automatically) ── */
+function parseRowsToTxns(rows) {
+  // Find header row — look for row containing "date" and a description keyword
+  let headerIdx = -1;
+  for (let i = 0; i < Math.min(rows.length, 20); i++) {
+    const r = rows[i].map(c => String(c).toLowerCase().trim());
+    const hasDate = r.some(c => c.includes('date'));
+    const hasDesc = r.some(c => c.includes('desc') || c.includes('narr') || c.includes('particular') || c.includes('detail'));
+    if (hasDate && hasDesc) { headerIdx = i; break; }
+  }
+
+  // If no header found, try to auto-detect by looking for date-like patterns
+  if (headerIdx < 0) {
+    for (let i = 0; i < Math.min(rows.length, 30); i++) {
+      const r = rows[i];
+      const hasDateVal = r.some(c => {
+        const s = String(c);
+        return /\d{1,2}[\/\-]\w{2,3}[\/\-]\d{2,4}/.test(s) || /\d{4}-\d{2}-\d{2}/.test(s) || c instanceof Date;
+      });
+      if (hasDateVal && r.length >= 3) { headerIdx = i - 1; break; }
+    }
+  }
+
+  if (headerIdx < 0) throw new Error('Could not find transaction table. Make sure the file has Date and Description columns.');
+
+  const header = rows[headerIdx].map(c => String(c).toLowerCase().trim());
+  const di  = header.findIndex(h => h.includes('date') || h === 'trans. date' || h === 'value date');
+  const xi  = header.findIndex(h => h.includes('desc') || h.includes('narr') || h.includes('particular') || h.includes('detail') || h === 'remarks');
+  const dbi = header.findIndex(h => h.includes('debit') || h === 'dr' || h === 'withdrawal' || h.includes('debit('));
+  const cri = header.findIndex(h => h.includes('credit') || h === 'cr' || h === 'deposit' || h.includes('credit('));
+
+  if (di < 0 || xi < 0) throw new Error(`Could not identify columns. Found: ${header.join(', ')}`);
+
+  const txns = [];
+  for (let i = headerIdx + 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row || row.every(c => c === '' || c === null)) continue;
+
+    let dateVal = di >= 0 ? row[di] : '';
+    if (dateVal instanceof Date) {
+      dateVal = dateVal.toISOString().slice(0,10);
+    } else {
+      dateVal = String(dateVal).trim();
+    }
+    if (!dateVal || dateVal.length < 3) continue;
+
+    const desc   = String(row[xi] || '').trim().slice(0,70);
+    const debit  = parseAmount(dbi >= 0 ? row[dbi] : '');
+    const credit = parseAmount(cri >= 0 ? row[cri] : '');
+
+    if (desc || debit > 0 || credit > 0) {
+      txns.push({ date: dateVal, desc: desc || 'Transaction', debit, credit, cat: 'Other' });
+    }
+  }
+  return txns;
+}
+
+/* ── AMOUNT PARSER ── */
+function parseAmount(val) {
+  if (!val && val !== 0) return 0;
+  const s = String(val).replace(/[₦,\s'"]/g, '').replace('--','').trim();
+  if (!s || s === '-' || s.toLowerCase() === 'nil') return 0;
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : Math.abs(n);
+}
+
+/* ── FINISH: apply categorizer + refresh UI ── */
+function categorize(desc) {
+  const d = desc.toLowerCase();
+  if (/airtime|mobile data|datamtn|mtn data|glo data|airtel data/.test(d)) return 'Airtime & Data';
+  if (/piggyvest|piggy/.test(d)) return 'Savings (PiggyVest)';
+  if (/owealth|auto-save|spend.?save/.test(d)) return 'Savings (OWealth)';
+  if (/electricity|nepa|ibedc|ekedc|phcn/.test(d)) return 'Utilities';
+  if (/food|frozen|restaurant|eatery|supermarket|grocery/.test(d)) return 'Food & Groceries';
+  if (/facebook|google|ads/.test(d)) return 'Business Ads';
+  if (/school|fees|tuition|university/.test(d)) return 'Education';
+  if (/hospital|pharmacy|medical|clinic/.test(d)) return 'Healthcare';
+  if (/card maintenance|levy|maintenance fee|sms charge|vat/.test(d)) return 'Bank Charges';
+  if (/transfer from|received from|inflow/.test(d)) return 'Incoming';
+  if (/transfer to|sent to|outflow/.test(d)) return 'Transfers Out';
+  if (/pos|point of sale/.test(d)) return 'POS Payment';
+  if (/atm|cash withdrawal/.test(d)) return 'Cash Withdrawal';
+  return 'Other';
+}
+
+function finishUpload(txns, format) {
+  if (!txns || txns.length === 0) {
+    showMsg(`<div class="upload-msg error">❌ No transactions found in this ${format} file. Check that it contains Date, Description, Debit, and Credit columns.</div>`);
+    return;
+  }
+
+  // Apply categorizer
+  txns.forEach(t => { t.cat = categorize(t.desc); });
+
+  txnData = txns;
+  filteredTxns = txns;
+
+  const debits  = txns.reduce((s,t) => s+t.debit,  0);
+  const credits = txns.reduce((s,t) => s+t.credit, 0);
+
+  showMsg(`<div class="upload-msg success">
+    ✅ <strong>${txns.length} transactions</strong> loaded from ${format} file.
+    &nbsp;|&nbsp; Total In: <strong>₦${Math.round(credits).toLocaleString()}</strong>
+    &nbsp;|&nbsp; Total Out: <strong>₦${Math.round(debits).toLocaleString()}</strong>
+    <br><span style="font-size:11px;opacity:0.8">Switch to the <strong>Transactions</strong> tab to explore, or the <strong>Overview</strong> tab to see charts.</span>
+  </div>`);
+
+  renderTxns();
 }
 </script>
 </body>

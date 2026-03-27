@@ -3,7 +3,7 @@
 > 3MTT NextGen Knowledge Showcase | Financial Inclusion Pillar
 
 ## Live Demo
-https://festusejiayelia.github.io/finsight
+[https://finsightx.lovable.app](https://finsightx.lovable.app)
 
 ## What it does
 FinSight turns your Nigerian bank statement into an instant financial dashboard. Upload your OPay, Kuda, or GTBank CSV statement and get:
